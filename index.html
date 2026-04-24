@@ -14,6 +14,8 @@
             <ul class="nav-menu">
                 <li><a href="#services">שירותים</a></li>
                 <li><a href="#benefits">יתרונות</a></li>
+                <li><a href="#hard-truth">האמת הקשה</a></li>
+                <li><a href="#solution">הפתרון שלנו</a></li>
                 <li><a href="#portfolio">תיקייה</a></li>
                 <li><a href="#contact" class="btn-cta">צור קשר</a></li>
             </ul>
@@ -88,6 +90,54 @@
         </div>
     </section>
 
+    <!-- The Hard Truth Section -->
+    <section id="hard-truth" class="hard-truth">
+        <div class="container">
+            <h2>האמת הקשה</h2>
+            <div class="truth-grid">
+                <div class="pain-card fade-in delay-1">
+                    <div class="pain-icon">💸</div>
+                    <h3>תקציב מבוזבז</h3>
+                    <p>רוב העסקים מבזבזים כסף בקמפיינים שלא תומכים בתוצאות מדידות. ללא אסטרטגיה נכונה, הכסף שלך נעלם.</p>
+                </div>
+                <div class="pain-card fade-in delay-2">
+                    <div class="pain-icon">👥</div>
+                    <h3>ליידים רעים</h3>
+                    <p>איכות הליידים חשובה יותר מכמות. בלי מטרה ברורה, אתה מקבל צפצופים במקום לקוחות אמיתיים.</p>
+                </div>
+                <div class="pain-card fade-in delay-3">
+                    <div class="pain-icon">📊</div>
+                    <h3>אי-עקביות</h3>
+                    <p>חסר אסטרטגיה אחידה בכל הערוצים. כל מחלקה עובדת בנפרד, מה שגורם לתוצאות בלתי צפויות ומבולבלות.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Solution Section -->
+    <section id="solution" class="solution">
+        <div class="container">
+            <h2>הפתרון שלנו</h2>
+            <div class="solution-grid">
+                <div class="solution-card fade-in delay-1">
+                    <div class="solution-icon">✅</div>
+                    <h3>אסטרטגיה חכמה</h3>
+                    <p>אנחנו בונים אסטרטגיה מקיפה המתמקדת בתוצאות בפועל, לא רק בעלויות.</p>
+                </div>
+                <div class="solution-card fade-in delay-2">
+                    <div class="solution-icon">🎯</div>
+                    <h3>ליידים באיכות גבוהה</h3>
+                    <p>שימוש בטכנולוגיות מתקדמות לזיהוי וסינון הלקוחות הפוטנציאליים הטובים ביותר.</p>
+                </div>
+                <div class="solution-card fade-in delay-3">
+                    <div class="solution-icon">🚀</div>
+                    <h3>קיום עקביות</h3>
+                    <p>כל הערוצים שלך עובדים בהרמוניה, עם הודעות אחידה ותוצאות חזקות.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio">
         <div class="container">
@@ -132,5 +182,25 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .benefit-item, .portfolio-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>

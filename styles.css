@@ -13,6 +13,8 @@
     --text-light: #F0F0F0;
     --text-muted: #9A9A9A;
     --success: #4ADE80;
+    --room-warm: #3E2B1D;
+    --room-ambient: #5A3D26;
 }
 
 html {
@@ -33,65 +35,262 @@ body {
     padding: 0 20px;
 }
 
-/* ===== DOOR OVERLAY ANIMATION ===== */
-.door-overlay {
+/* ===== CINEMATIC FIRST-PERSON POV DOOR ANIMATION ===== */
+.cinematic-door-scene {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     z-index: 9999;
-    pointer-events: none;
     overflow: hidden;
+    perspective: 1000px;
+    perspective-origin: center center;
+    background: #000;
+    transition: opacity 1.5s ease-out, transform 1.5s ease-in-out;
+    transform-style: preserve-3d;
 }
 
-.door-frame-wrapper {
+/* Room Interior - Visible when door opens */
+.room-interior {
     position: absolute;
     inset: 0;
-    display: flex;
+    transform-style: preserve-3d;
+    background: linear-gradient(180deg, #1a1208 0%, #2d1f10 50%, #1a1208 100%);
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
 }
 
-.door-left, .door-right {
-    flex: 1;
-    background: linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
-    border: 3px solid var(--burnished-gold);
-    position: relative;
-    transition: transform 2s cubic-bezier(0.7, 0, 0.3, 1);
-    box-shadow: inset 0 0 60px rgba(197, 160, 89, 0.2);
+.cinematic-door-scene.door-open .room-interior {
+    opacity: 1;
 }
 
-.door-left {
-    border-right: none;
-    background:
-        linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%),
-        repeating-linear-gradient(
-            45deg,
-            transparent,
-            transparent 10px,
-            rgba(197, 160, 89, 0.03) 10px,
-            rgba(197, 160, 89, 0.03) 20px
-        );
-}
-
-.door-right {
-    border-left: none;
-}
-
-.door-handle {
+/* Back wall - far from viewer */
+.room-back-wall {
     position: absolute;
-    width: 25px;
-    height: 70px;
-    background: radial-gradient(ellipse at 30% 30%, var(--gold-bright), var(--burnished-gold));
-    border-radius: 12px;
-    right: 20px;
+    top: 10%;
+    left: 15%;
+    right: 15%;
+    bottom: 20%;
+    background:
+        linear-gradient(135deg, rgba(62, 43, 29, 0.9) 0%, rgba(90, 61, 38, 0.7) 50%, rgba(62, 43, 29, 0.9) 100%),
+        radial-gradient(ellipse at center, rgba(197, 160, 89, 0.2) 0%, transparent 70%);
+    transform: translateZ(-300px);
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.7);
+}
+
+.luxury-painting {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 140px;
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.3) 0%, rgba(90, 61, 38, 0.6) 100%);
+    border: 4px solid rgba(197, 160, 89, 0.6);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+.luxury-lamp {
+    position: absolute;
+    top: 25%;
+    width: 15px;
+    height: 80px;
+    background: linear-gradient(180deg, rgba(197, 160, 89, 0.8) 0%, rgba(197, 160, 89, 0.3) 100%);
+    border-radius: 3px;
+    box-shadow: 0 0 40px rgba(229, 192, 120, 0.6), 0 0 80px rgba(229, 192, 120, 0.3);
+    animation: lampFlicker 3s ease-in-out infinite;
+}
+
+.lamp-left { left: 10%; }
+.lamp-right { right: 10%; }
+
+@keyframes lampFlicker {
+    0%, 100% { opacity: 0.9; box-shadow: 0 0 40px rgba(229, 192, 120, 0.6); }
+    50% { opacity: 1; box-shadow: 0 0 60px rgba(229, 192, 120, 0.9); }
+}
+
+/* Ambient room lighting */
+.room-ambient-light {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(229, 192, 120, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 70% 40%, rgba(229, 192, 120, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at center bottom, rgba(197, 160, 89, 0.1) 0%, transparent 60%);
+    transform: translateZ(-100px);
+}
+
+/* Floor with perspective */
+.room-floor {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background:
+        linear-gradient(180deg, transparent 0%, rgba(62, 43, 29, 0.9) 100%),
+        repeating-linear-gradient(
+            90deg,
+            rgba(90, 61, 38, 0.3) 0px,
+            rgba(62, 43, 29, 0.4) 80px,
+            rgba(90, 61, 38, 0.3) 160px
+        );
+    transform: rotateX(75deg) translateZ(-150px);
+    transform-origin: top center;
+}
+
+/* Side walls for depth */
+.room-left-wall,
+.room-right-wall {
+    position: absolute;
+    top: 0;
+    bottom: 20%;
+    width: 50%;
+    background: linear-gradient(90deg, rgba(45, 31, 16, 0.9) 0%, rgba(62, 43, 29, 0.4) 100%);
+}
+
+.room-left-wall {
+    left: 0;
+    transform: rotateY(45deg) translateZ(-100px);
+    transform-origin: right center;
+}
+
+.room-right-wall {
+    right: 0;
+    transform: rotateY(-45deg) translateZ(-100px);
+    transform-origin: left center;
+    background: linear-gradient(-90deg, rgba(45, 31, 16, 0.9) 0%, rgba(62, 43, 29, 0.4) 100%);
+}
+
+/* 3D Door Container - positioned on right side (RTL) */
+.door-3d-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 600px;
+    transform-style: preserve-3d;
+    transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Door Panel - opens inward (backwards) */
+.door-panel {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(135deg, #2A1F12 0%, #1A120A 100%),
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            transparent 40px,
+            rgba(197, 160, 89, 0.05) 40px,
+            rgba(197, 160, 89, 0.05) 42px
+        );
+    border: 4px solid var(--burnished-gold);
+    box-shadow:
+        inset 0 0 60px rgba(197, 160, 89, 0.2),
+        0 0 80px rgba(0, 0, 0, 0.8),
+        0 20px 60px rgba(0, 0, 0, 0.6);
+    transform-origin: right center;
+    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    backface-visibility: visible;
+}
+
+/* Ornate frame around door */
+.door-ornate-frame {
+    position: absolute;
+    inset: 20px;
+    border: 2px solid rgba(197, 160, 89, 0.6);
+    background:
+        linear-gradient(135deg, transparent 0%, rgba(197, 160, 89, 0.05) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.door-ornate-frame::before,
+.door-ornate-frame::after {
+    content: '';
+    position: absolute;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+}
+
+.door-ornate-frame::before {
+    inset: 15px;
+}
+
+.door-ornate-frame::after {
+    inset: 30px;
+}
+
+/* Inner door panels */
+.door-inner {
+    position: absolute;
+    inset: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    pointer-events: none;
+}
+
+.door-detail-top,
+.door-detail-middle,
+.door-detail-bottom {
+    flex: 1;
+    background:
+        linear-gradient(135deg, rgba(197, 160, 89, 0.08) 0%, rgba(42, 31, 18, 0.5) 50%, rgba(197, 160, 89, 0.08) 100%);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 5px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Luxury door handle */
+.door-handle-luxury {
+    position: absolute;
+    left: 25px;
     top: 50%;
     transform: translateY(-50%);
-    box-shadow: 0 0 25px rgba(197, 160, 89, 0.6), inset 0 0 10px rgba(0, 0, 0, 0.3);
+    width: 30px;
+    height: 90px;
+    background: radial-gradient(ellipse at 30% 30%, var(--gold-bright) 0%, var(--burnished-gold) 50%, var(--gold-dim) 100%);
+    border-radius: 15px;
+    box-shadow:
+        0 0 25px rgba(229, 192, 120, 0.6),
+        0 5px 15px rgba(0, 0, 0, 0.5),
+        inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.right-handle {
-    left: 20px;
-    right: auto;
+/* Cinematic Zoom-in effect */
+.cinematic-door-scene.door-zoom-in .door-3d-container {
+    transform: translate(-50%, -50%) scale(1.15) translateZ(100px);
+}
+
+/* Door opens backward (inward into the room) */
+.cinematic-door-scene.door-open .door-panel {
+    transform: rotateY(-110deg) translateZ(-50px);
+    box-shadow:
+        inset 0 0 60px rgba(197, 160, 89, 0.3),
+        -40px 20px 100px rgba(0, 0, 0, 0.9);
+}
+
+/* Push forward - camera moves into the room */
+.cinematic-door-scene.push-forward {
+    transform: translateZ(800px) scale(3);
+    opacity: 0;
+}
+
+/* Main site reveals with push-forward motion */
+.main-site {
+    opacity: 0;
+    transform: translateZ(-200px) scale(0.95);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    transform-origin: center center;
+}
+
+.main-site.site-reveal {
+    opacity: 1;
+    transform: translateZ(0) scale(1);
 }
 
 /* ===== NAVIGATION ===== */
@@ -209,17 +408,15 @@ body {
     color: var(--burnished-gold);
     font-weight: 600;
     margin-bottom: 1rem;
-    text-transform: uppercase;
 }
 
 .hero-content h1 {
-    font-size: 3.8rem;
+    font-size: 3.5rem;
     line-height: 1.15;
     margin-bottom: 1.5rem;
     color: var(--text-light);
     font-weight: 900;
-    letter-spacing: -1px;
-    text-transform: uppercase;
+    letter-spacing: -0.5px;
 }
 
 .gold-text {
@@ -244,7 +441,6 @@ body {
     gap: 1.5rem;
 }
 
-/* Gold-Glow CTA Button */
 .btn-primary {
     background: linear-gradient(135deg, var(--burnished-gold) 0%, var(--gold-bright) 100%);
     color: var(--deep-onyx);
@@ -259,9 +455,6 @@ body {
     box-shadow: 0 0 30px rgba(197, 160, 89, 0.4), 0 10px 40px rgba(197, 160, 89, 0.3);
     display: inline-block;
     width: fit-content;
-    text-transform: uppercase;
-    position: relative;
-    overflow: hidden;
     animation: goldGlow 3s ease-in-out infinite;
 }
 
@@ -281,7 +474,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -631,7 +823,6 @@ body {
     padding: 0.5rem 1.5rem;
     border: 1px solid rgba(197, 160, 89, 0.3);
     border-radius: 3px;
-    text-transform: uppercase;
 }
 
 .pain-label {
@@ -644,7 +835,7 @@ body {
     border-color: rgba(74, 222, 128, 0.3);
 }
 
-/* ===== PROBLEM SECTION (Tense Dark Slate) ===== */
+/* ===== PROBLEM SECTION ===== */
 .problem {
     padding: 100px 0;
     background: var(--dark-slate);
@@ -663,9 +854,8 @@ body {
 .problem h2 {
     font-size: 2.8rem;
     color: var(--text-light);
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     font-weight: 800;
-    text-transform: uppercase;
 }
 
 .problem-grid {
@@ -707,7 +897,7 @@ body {
     line-height: 1.8;
 }
 
-/* ===== SOLUTION SECTION (Deep Onyx with Gold Glows) ===== */
+/* ===== SOLUTION SECTION ===== */
 .solution {
     padding: 100px 0;
     background: var(--deep-onyx);
@@ -727,9 +917,8 @@ body {
 .solution h2 {
     font-size: 2.8rem;
     color: var(--text-light);
-    letter-spacing: -1px;
+    letter-spacing: -0.5px;
     font-weight: 800;
-    text-transform: uppercase;
 }
 
 .solution-steps {
@@ -746,7 +935,6 @@ body {
     border: 1px solid rgba(197, 160, 89, 0.25);
     border-radius: 8px;
     transition: all 0.3s ease;
-    position: relative;
 }
 
 .step:hover {
@@ -795,7 +983,6 @@ body {
 .features h2 {
     font-size: 2.8rem;
     color: var(--text-light);
-    text-transform: uppercase;
     font-weight: 800;
 }
 
@@ -842,7 +1029,7 @@ body {
     font-size: 0.95rem;
 }
 
-/* ===== RESULTS SECTION (Deep Onyx with Gold Glow) ===== */
+/* ===== RESULTS SECTION ===== */
 .results {
     padding: 100px 0;
     background: var(--deep-onyx);
@@ -860,7 +1047,6 @@ body {
 .results h2 {
     font-size: 2.8rem;
     color: var(--text-light);
-    text-transform: uppercase;
     font-weight: 800;
 }
 
@@ -941,7 +1127,6 @@ body {
     letter-spacing: 3px;
     font-weight: 700;
     margin-bottom: 1.5rem;
-    text-transform: uppercase;
     animation: pulse 2s ease-in-out infinite;
 }
 
@@ -953,8 +1138,7 @@ body {
 .cta h2 {
     font-size: 3rem;
     margin-bottom: 1.5rem;
-    letter-spacing: -1px;
-    text-transform: uppercase;
+    letter-spacing: -0.5px;
     font-weight: 900;
     position: relative;
     z-index: 1;
@@ -986,7 +1170,6 @@ body {
     box-shadow: 0 0 40px rgba(197, 160, 89, 0.5), 0 15px 40px rgba(197, 160, 89, 0.3);
     display: inline-block;
     margin-bottom: 2rem;
-    text-transform: uppercase;
     position: relative;
     z-index: 1;
     animation: goldGlow 3s ease-in-out infinite;
@@ -1073,5 +1256,10 @@ body {
 
     .scroll-indicator {
         display: none;
+    }
+
+    .door-3d-container {
+        width: 280px;
+        height: 420px;
     }
 }

@@ -3,290 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fill Your Rooms 24/7 | Premium STR Marketing</title>
+    <title>מלא את הדירות שלך 24/7 | שיווק פרימיום לדירות להשכרה</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 <body>
-    <!-- Opening Door Animation Overlay -->
-    <div class="door-overlay" id="doorOverlay">
-        <div class="door-frame-wrapper">
-            <div class="door-left">
-                <div class="door-handle"></div>
+    <!-- Cinematic Door Opening Animation - First Person POV -->
+    <div class="cinematic-door-scene" id="doorScene">
+        <div class="room-interior">
+            <div class="room-ambient-light"></div>
+            <div class="room-floor"></div>
+            <div class="room-back-wall">
+                <div class="luxury-lamp lamp-left"></div>
+                <div class="luxury-lamp lamp-right"></div>
+                <div class="luxury-painting"></div>
             </div>
-            <div class="door-right">
-                <div class="door-handle right-handle"></div>
+            <div class="room-left-wall"></div>
+            <div class="room-right-wall"></div>
+        </div>
+
+        <div class="door-3d-container">
+            <div class="door-panel">
+                <div class="door-ornate-frame"></div>
+                <div class="door-inner">
+                    <div class="door-detail-top"></div>
+                    <div class="door-detail-middle"></div>
+                    <div class="door-detail-bottom"></div>
+                </div>
+                <div class="door-handle-luxury"></div>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">💎 GROWTH ELITE</div>
-            <ul class="nav-menu">
-                <li><a href="#problem">The Problem</a></li>
-                <li><a href="#solution">The Solution</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#results">Results</a></li>
-                <li><a href="#contact" class="btn-cta">Book Call</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="container hero-content-wrapper">
-            <div class="hero-content" data-aos="fade-left" data-aos-delay="1500">
-                <div class="hero-tagline">PREMIUM STR MARKETING</div>
-                <h1>STOP LEAVING SHEKELS ON THE TABLE.<br><span class="gold-text">FILL YOUR ROOMS 24/7.</span></h1>
-                <p class="hero-subtitle">Every empty hour is lost revenue. We fill your short-term rentals around the clock with performance-based marketing — or you don't pay.</p>
-                <div class="cta-group">
-                    <button class="btn-primary">BOOK YOUR STRATEGY CALL</button>
-                    <span class="trust-text">✓ No commitment &nbsp;&nbsp; ✓ Performance-based &nbsp;&nbsp; ✓ 150+ properties managed</span>
-                </div>
+    <!-- Main Site Content -->
+    <div class="main-site" id="mainSite">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">💎 צמיחה מעצמת</div>
+                <ul class="nav-menu">
+                    <li><a href="#problem">הבעיה</a></li>
+                    <li><a href="#solution">הפתרון</a></li>
+                    <li><a href="#features">יתרונות</a></li>
+                    <li><a href="#results">תוצאות</a></li>
+                    <li><a href="#contact" class="btn-cta">קבע פגישה</a></li>
+                </ul>
             </div>
+        </nav>
 
-            <!-- Movie Quality Robot -->
-            <div class="robot-container" data-aos="fade-right" data-aos-delay="1500">
-                <div class="stairs">
-                    <div class="stair stair-1"></div>
-                    <div class="stair stair-2"></div>
-                    <div class="stair stair-3"></div>
-                    <div class="stair stair-4"></div>
-                    <div class="stair stair-5"></div>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg"></div>
+            <div class="container hero-content-wrapper">
+                <div class="hero-content" data-aos="fade-left" data-aos-delay="3000">
+                    <div class="hero-tagline">שיווק פרימיום לדירות להשכרה</div>
+                    <h1>הפסק להשאיר כסף על השולחן<br><span class="gold-text">מלא את הדירות שלך 24/7</span></h1>
+                    <p class="hero-subtitle">כל שעה ריקה היא כסף אבוד. אנחנו ממלאים את הדירות להשכרה שלך מסביב לשעון עם שיווק מבוסס ביצועים — אחרת לא משלמים.</p>
+                    <div class="cta-group">
+                        <button class="btn-primary">קבע פגישת אסטרטגיה</button>
+                        <span class="trust-text">✓ ללא התחייבות &nbsp;&nbsp; ✓ מבוסס ביצועים &nbsp;&nbsp; ✓ 150+ דירות בניהול</span>
+                    </div>
                 </div>
 
-                <div class="robot" id="robot">
-                    <div class="robot-head">
-                        <div class="head-top"></div>
-                        <div class="head-visor">
-                            <div class="visor-glow"></div>
-                            <div class="eye eye-left"></div>
-                            <div class="eye eye-right"></div>
+                <!-- Robot Climbing Stairs -->
+                <div class="robot-container" data-aos="fade-right" data-aos-delay="3000">
+                    <div class="stairs">
+                        <div class="stair stair-1"></div>
+                        <div class="stair stair-2"></div>
+                        <div class="stair stair-3"></div>
+                        <div class="stair stair-4"></div>
+                        <div class="stair stair-5"></div>
+                    </div>
+
+                    <div class="robot" id="robot">
+                        <div class="robot-head">
+                            <div class="head-top"></div>
+                            <div class="head-visor">
+                                <div class="visor-glow"></div>
+                                <div class="eye eye-left"></div>
+                                <div class="eye eye-right"></div>
+                            </div>
+                            <div class="antenna"></div>
                         </div>
-                        <div class="antenna"></div>
-                    </div>
-                    <div class="robot-torso">
-                        <div class="chest-plate">
-                            <div class="chest-light"></div>
+                        <div class="robot-torso">
+                            <div class="chest-plate">
+                                <div class="chest-light"></div>
+                            </div>
+                            <div class="chest-detail"></div>
                         </div>
-                        <div class="chest-detail"></div>
+                        <div class="robot-left-arm">
+                            <div class="upper-arm"></div>
+                            <div class="forearm"></div>
+                            <div class="hand"></div>
+                        </div>
+                        <div class="robot-right-arm">
+                            <div class="upper-arm"></div>
+                            <div class="forearm"></div>
+                            <div class="hand"></div>
+                        </div>
+                        <div class="robot-left-leg">
+                            <div class="thigh"></div>
+                            <div class="shin"></div>
+                            <div class="foot"></div>
+                        </div>
+                        <div class="robot-right-leg">
+                            <div class="thigh"></div>
+                            <div class="shin"></div>
+                            <div class="foot"></div>
+                        </div>
+                        <div class="energy-particle p1"></div>
+                        <div class="energy-particle p2"></div>
+                        <div class="energy-particle p3"></div>
                     </div>
-                    <div class="robot-left-arm">
-                        <div class="upper-arm"></div>
-                        <div class="forearm"></div>
-                        <div class="hand"></div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <span>גלול למטה</span>
+                <div class="scroll-arrow"></div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section id="problem" class="problem">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-label pain-label">האמת הכואבת</div>
+                    <h2>כל שעה ריקה היא כסף שלא יחזור אליך לעולם</h2>
+                </div>
+                <div class="problem-grid">
+                    <div class="problem-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="problem-number">💸</div>
+                        <h3>דירות ריקות מדממות כסף</h3>
+                        <p>בזמן שהמתחרים שלך ממלאים כל שעה, הדירות שלך עומדות ריקות. כל שעה לא-מכורה זה אלפי שקלים שאבודים לנצח. זה הרוצח השקט של עסקי השכרה קצרת טווח.</p>
                     </div>
-                    <div class="robot-right-arm">
-                        <div class="upper-arm"></div>
-                        <div class="forearm"></div>
-                        <div class="hand"></div>
+                    <div class="problem-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="problem-number">📱</div>
+                        <h3>ניהול ידני = כאוס</h3>
+                        <p>בלגן בוואטסאפ. הזמנות שהולכות לאיבוד. כפילויות. אתה טובע בהודעות בזמן שהאורחים עוברים לפלטפורמות שעונות בשניות.</p>
                     </div>
-                    <div class="robot-left-leg">
-                        <div class="thigh"></div>
-                        <div class="shin"></div>
-                        <div class="foot"></div>
+                    <div class="problem-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="problem-number">🎯</div>
+                        <h3>אתה טס באפלה</h3>
+                        <p>אין לך מושג איזה ערוצים מביאים את האורחים הטובים ביותר. אתה לא יודע מה התמחור האופטימלי. אתה מנחש עם הכסף שלך בזמן שהשוק זז בלעדיך.</p>
                     </div>
-                    <div class="robot-right-leg">
-                        <div class="thigh"></div>
-                        <div class="shin"></div>
-                        <div class="foot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section id="solution" class="solution">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-label solution-label">הפתרון</div>
+                    <h2>אנחנו ממלאים את הדירות שלך כמו מכונה</h2>
+                </div>
+                <div class="solution-steps">
+                    <div class="step" data-aos="fade-up" data-aos-delay="100">
+                        <div class="step-number">01</div>
+                        <h3>סקירה מלאה של כל הערוצים</h3>
+                        <p>אנחנו סורקים את Airbnb, Booking, ערוצים ישירים ופלטפורמות מקומיות. תוך 48 שעות אתה מקבל דוח פורנזי שמראה בדיוק איפה הכסף שלך דולף.</p>
                     </div>
-                    <div class="energy-particle p1"></div>
-                    <div class="energy-particle p2"></div>
-                    <div class="energy-particle p3"></div>
+                    <div class="step" data-aos="fade-up" data-aos-delay="200">
+                        <div class="step-number">02</div>
+                        <h3>אסטרטגיית מילוי 24/7</h3>
+                        <p>אנחנו בונים מערכת שממלאת את הדירה שלך אוטומטית. שעות שיא, תמחור דינמי, סגמנטציית אורחים — הכל מותאם להכנסה מקסימלית.</p>
+                    </div>
+                    <div class="step" data-aos="fade-up" data-aos-delay="300">
+                        <div class="step-number">03</div>
+                        <h3>תוצאות תוך 30 יום</h3>
+                        <p>בלי סיפורים. בלי הבטחות. אנחנו מעלים את התפוסה שלך בלפחות 40% או מחזירים לך כל שקל. זהו.</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- Scroll Indicator -->
-        <div class="scroll-indicator">
-            <span>SCROLL</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-label">מה שתקבל</div>
+                    <h2>כל מה שצריך כדי לשלוט בשוק</h2>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="feature-icon">🔄</div>
+                        <h3>מערכת מילוי אוטומטית</h3>
+                        <p>הדירה שלך מתמלאת מעצמה בכל הערוצים. סנכרון הזמנות בזמן אמת. אפס עבודה ידנית.</p>
+                    </div>
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="feature-icon">📊</div>
+                        <h3>ניתוח נתונים בזמן אמת</h3>
+                        <p>תדע בדיוק איזה סוג אורחים משלם הכי הרבה, איזה ערוצים מניבים, ומתי להעלות מחירים.</p>
+                    </div>
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="feature-icon">💰</div>
+                        <h3>תמחור דינמי</h3>
+                        <p>תמחור מונחה בינה מלאכותית שסוחט כל שקל משעות שיא וממלא את השעות השקטות.</p>
+                    </div>
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="feature-icon">🎯</div>
+                        <h3>תפוסה של 90%+</h3>
+                        <p>הדירה שלך עובדת כמעט בכל שעה. דירות ריקות הופכות לזיכרון רחוק.</p>
+                    </div>
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="feature-icon">⏰</div>
+                        <h3>ניהול מלא 24/7</h3>
+                        <p>אנחנו מטפלים בהזמנות, צ'ק-אין, בעיות וביקורות. אתה פשוט גובה את הכסף.</p>
+                    </div>
+                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="feature-icon">✅</div>
+                        <h3>אחריות 100%</h3>
+                        <p>אם התפוסה לא עולה ב-40%+, אנחנו מחזירים הכל. בלי חוזים. בלי פרצות.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Problem Section (Pain - Dark Slate) -->
-    <section id="problem" class="problem">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label pain-label">THE BRUTAL TRUTH</div>
-                <h2>Every Empty Hour Is Money You'll Never See Again</h2>
+        <!-- Results Section -->
+        <section id="results" class="results">
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-label">מספרים אמיתיים</div>
+                    <h2>בעלי נכסים שהתעוררו</h2>
+                </div>
+                <div class="results-stats">
+                    <div class="stat" data-aos="flip-up" data-aos-delay="100">
+                        <div class="stat-number">340%</div>
+                        <p>עלייה בהכנסה חודשית</p>
+                        <small>3 יחידות, תל אביב</small>
+                    </div>
+                    <div class="stat" data-aos="flip-up" data-aos-delay="200">
+                        <div class="stat-number">87%</div>
+                        <p>תפוסה ממוצעת</p>
+                        <small>חודש ראשון איתנו</small>
+                    </div>
+                    <div class="stat" data-aos="flip-up" data-aos-delay="300">
+                        <div class="stat-number">92%</div>
+                        <p>שיעור אורחים חוזרים</p>
+                        <small>בוטיק בירושלים</small>
+                    </div>
+                    <div class="stat" data-aos="flip-up" data-aos-delay="400">
+                        <div class="stat-number">2h</div>
+                        <p>זמן פתרון בעיות</p>
+                        <small>תמיכה 24/7</small>
+                    </div>
+                </div>
             </div>
-            <div class="problem-grid">
-                <div class="problem-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="problem-number">💸</div>
-                    <h3>Empty Rooms Bleed Cash</h3>
-                    <p>While your competitors fill every slot, your rooms sit cold. Every unsold hour is thousands of shekels lost forever. This is the silent killer of STR businesses.</p>
-                </div>
-                <div class="problem-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="problem-number">📱</div>
-                    <h3>Manual Management = Chaos</h3>
-                    <p>WhatsApp chaos. Missed bookings. Double-bookings. You're drowning in messages while losing guests to platforms that respond in seconds.</p>
-                </div>
-                <div class="problem-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="problem-number">🎯</div>
-                    <h3>You're Flying Blind</h3>
-                    <p>You don't know which channels bring the best guests. You don't know peak pricing. You're guessing with your money while the market moves without you.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Solution Section (Relief - Deep Onyx with gold glow) -->
-    <section id="solution" class="solution">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label solution-label">THE SOLUTION</div>
-                <h2>We Fill Your Properties Like a Machine</h2>
-            </div>
-            <div class="solution-steps">
-                <div class="step" data-aos="fade-up" data-aos-delay="100">
-                    <div class="step-number">01</div>
-                    <h3>Complete Channel Audit</h3>
-                    <p>We scan Airbnb, Booking, direct channels, and local platforms. In 48 hours you get a forensic report showing exactly where your money leaks.</p>
-                </div>
-                <div class="step" data-aos="fade-up" data-aos-delay="200">
-                    <div class="step-number">02</div>
-                    <h3>24/7 Fill Strategy</h3>
-                    <p>We build a system that fills your property automatically. Peak hours, off-peak pricing, guest segmentation — everything optimized for maximum revenue.</p>
-                </div>
-                <div class="step" data-aos="fade-up" data-aos-delay="300">
-                    <div class="step-number">03</div>
-                    <h3>Results in 30 Days</h3>
-                    <p>No stories. No promises. We increase your occupancy by at least 40% or you get every shekel back. That's it.</p>
+        <!-- CTA Section -->
+        <section id="contact" class="cta">
+            <div class="container" data-aos="zoom-in">
+                <div class="cta-badge">מקומות מוגבלים</div>
+                <h2>המתחרה שלך ממלא את הדירות שלו ברגע זה</h2>
+                <p>קבע שיחת אסטרטגיה חינם. ננתח את הדירה שלך, נראה לך בדיוק כמה כסף אתה מפסיד, ונבנה תוכנית למלא כל חדר — או שלא תשלם.</p>
+                <button class="btn-primary-large">קבע פגישת אסטרטגיה</button>
+                <div class="cta-benefits">
+                    <span>✓ ניתוח חינם</span>
+                    <span>✓ ללא התחייבות</span>
+                    <span>✓ דוח תוך 48 שעות</span>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label">WHAT YOU GET</div>
-                <h2>Everything You Need to Dominate</h2>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Auto-Fill System</h3>
-                    <p>Your property fills itself across every channel. Real-time booking sync. Zero manual work.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="feature-icon">📊</div>
-                    <h3>Real-Time Analytics</h3>
-                    <p>Know exactly which guest types pay the most, which channels deliver, and when to push prices up.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="feature-icon">💰</div>
-                    <h3>Dynamic Pricing</h3>
-                    <p>AI-driven pricing that squeezes every shekel from peak hours and fills the slow times.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
-                    <div class="feature-icon">🎯</div>
-                    <h3>90%+ Occupancy</h3>
-                    <p>Your property is working almost every hour. Empty rooms become a distant memory.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
-                    <div class="feature-icon">⏰</div>
-                    <h3>Full 24/7 Management</h3>
-                    <p>We handle bookings, check-ins, problems, and reviews. You just collect the money.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
-                    <div class="feature-icon">✅</div>
-                    <h3>100% Guarantee</h3>
-                    <p>If occupancy doesn't grow 40%+, we refund everything. No contracts. No loopholes.</p>
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2026 צמיחה מעצמת - שיווק דירות להשכרה. כל הזכויות שמורות.</p>
+                <div class="footer-links">
+                    <a href="#">תנאי שימוש</a>
+                    <a href="#">מדיניות פרטיות</a>
+                    <a href="#">צור קשר</a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section id="results" class="results">
-        <div class="container">
-            <div class="section-header" data-aos="fade-up">
-                <div class="section-label">REAL NUMBERS</div>
-                <h2>Property Owners Who Woke Up</h2>
-            </div>
-            <div class="results-stats">
-                <div class="stat" data-aos="flip-up" data-aos-delay="100">
-                    <div class="stat-number">340%</div>
-                    <p>Monthly Revenue Increase</p>
-                    <small>3 units, Tel Aviv</small>
-                </div>
-                <div class="stat" data-aos="flip-up" data-aos-delay="200">
-                    <div class="stat-number">87%</div>
-                    <p>Average Occupancy</p>
-                    <small>First month with us</small>
-                </div>
-                <div class="stat" data-aos="flip-up" data-aos-delay="300">
-                    <div class="stat-number">92%</div>
-                    <p>Guest Return Rate</p>
-                    <small>Jerusalem boutique</small>
-                </div>
-                <div class="stat" data-aos="flip-up" data-aos-delay="400">
-                    <div class="stat-number">2h</div>
-                    <p>Issue Resolution Time</p>
-                    <small>24/7 support</small>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="contact" class="cta">
-        <div class="container" data-aos="zoom-in">
-            <div class="cta-badge">LIMITED SLOTS AVAILABLE</div>
-            <h2>Your Competitor Is Filling Their Rooms Right Now</h2>
-            <p>Book your free strategy call. We'll analyze your property, show you exactly how much money you're losing, and build a plan to fill every room — or you don't pay.</p>
-            <button class="btn-primary-large">BOOK YOUR STRATEGY CALL</button>
-            <div class="cta-benefits">
-                <span>✓ Free analysis</span>
-                <span>✓ No commitment</span>
-                <span>✓ Report in 48 hours</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Growth Elite - STR Marketing. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="#">Terms</a>
-                <a href="#">Privacy</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         // Initialize AOS
         AOS.init({
-            duration: 1000,
+            duration: 1200,
             once: true,
             offset: 100
         });
 
-        // Door animation - opens on load then gets out of the way
+        // Cinematic Door Opening - First Person POV
         window.addEventListener('load', () => {
+            const doorScene = document.getElementById('doorScene');
+            const mainSite = document.getElementById('mainSite');
+
+            // Start cinematic sequence
             setTimeout(() => {
-                const doorOverlay = document.getElementById('doorOverlay');
-                const doorLeft = document.querySelector('.door-left');
-                const doorRight = document.querySelector('.door-right');
+                // Phase 1: Zoom in on door (VIP approaching)
+                doorScene.classList.add('door-zoom-in');
 
-                doorLeft.style.transform = 'translateX(-100%)';
-                doorRight.style.transform = 'translateX(100%)';
-
-                // After animation completes, remove overlay so content is clickable
+                // Phase 2: Door opens inward (concierge welcomes)
                 setTimeout(() => {
-                    doorOverlay.style.display = 'none';
-                }, 2000);
-            }, 500);
+                    doorScene.classList.add('door-open');
+                }, 1500);
+
+                // Phase 3: Push forward into the room
+                setTimeout(() => {
+                    doorScene.classList.add('push-forward');
+                    mainSite.classList.add('site-reveal');
+                }, 3000);
+
+                // Phase 4: Remove door scene
+                setTimeout(() => {
+                    doorScene.style.display = 'none';
+                }, 4500);
+            }, 300);
         });
 
         // Robot climbing stairs animation
@@ -301,7 +330,6 @@
             if (robot) {
                 robot.style.transform = `translateX(calc(-50% + ${horizontalPos}px)) translateY(${position}px)`;
 
-                // Reset after reaching top
                 if (stepCount % 5 === 0) {
                     setTimeout(() => {
                         robot.style.transition = 'none';
@@ -316,7 +344,7 @@
 
         setInterval(climbStairs, 900);
 
-        // Smooth scroll for nav links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();

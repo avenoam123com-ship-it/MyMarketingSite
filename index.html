@@ -3,117 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מלא את הדירות שלך 24/7 | שיווק פרימיום לדירות להשכרה</title>
+    <title>מצוינות בהזמנה ישירה | Direct Booking Excellence for Boutique STRs</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Heebo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Cinematic Door Opening Animation with Concierge Android -->
+    <!-- Cinematic 3D Door — opens inward into a luxury suite -->
     <div class="cinematic-door-scene" id="doorScene">
-        <div class="room-interior">
-            <div class="room-ambient-light"></div>
-            <div class="room-floor"></div>
-            <div class="room-back-wall">
-                <div class="luxury-lamp lamp-left"></div>
-                <div class="luxury-lamp lamp-right"></div>
-                <div class="luxury-painting"></div>
+        <!--
+            Luxury suite revealed behind the door.
+            To swap in a real photo/video: replace .suite-media with
+            <img src="suite.jpg"> or <video src="suite.mp4" autoplay muted loop>
+        -->
+        <div class="luxury-suite-reveal">
+            <div class="suite-media">
+                <div class="suite-night-window"></div>
+                <div class="suite-fireplace-glow"></div>
+                <div class="suite-ambient"></div>
+                <div class="jacuzzi">
+                    <div class="jacuzzi-rim"></div>
+                    <div class="jacuzzi-water"></div>
+                    <div class="jacuzzi-shimmer"></div>
+                    <div class="steam steam-1"></div>
+                    <div class="steam steam-2"></div>
+                    <div class="steam steam-3"></div>
+                    <div class="steam steam-4"></div>
+                </div>
+                <div class="suite-floor-luxury"></div>
             </div>
-            <div class="room-left-wall"></div>
-            <div class="room-right-wall"></div>
         </div>
 
-        <!-- High-Fidelity Concierge Android -->
-        <div class="concierge-android" id="concierge">
-            <!-- Head -->
-            <div class="android-head">
-                <div class="head-dome">
-                    <div class="head-shine"></div>
-                </div>
-                <div class="head-visor">
-                    <div class="visor-glow-strip"></div>
-                    <div class="android-eye eye-left-a"></div>
-                    <div class="android-eye eye-right-a"></div>
-                </div>
-                <div class="head-chin"></div>
-                <div class="head-side-plate left-plate"></div>
-                <div class="head-side-plate right-plate"></div>
-                <div class="head-antenna-a">
-                    <div class="antenna-tip"></div>
-                </div>
-            </div>
-
-            <!-- Neck -->
-            <div class="android-neck">
-                <div class="neck-ring"></div>
-                <div class="neck-ring ring-2"></div>
-            </div>
-
-            <!-- Torso with brushed silver & gold -->
-            <div class="android-torso">
-                <div class="shoulder-piece left-shoulder"></div>
-                <div class="shoulder-piece right-shoulder"></div>
-                <div class="chest-armor">
-                    <div class="chest-seam center-seam"></div>
-                    <div class="chest-badge">
-                        <div class="badge-inner"></div>
-                    </div>
-                    <div class="chest-vent left-vent"></div>
-                    <div class="chest-vent right-vent"></div>
-                </div>
-                <div class="waist-ring"></div>
-            </div>
-
-            <!-- Left Arm - reaches for door handle -->
-            <div class="android-left-arm" id="leftArm">
-                <div class="upper-arm-a"></div>
-                <div class="elbow-joint"></div>
-                <div class="forearm-a"></div>
-                <div class="wrist-joint"></div>
-                <div class="hand-a" id="leftHand">
-                    <div class="palm"></div>
-                    <div class="finger finger-1"></div>
-                    <div class="finger finger-2"></div>
-                    <div class="finger finger-3"></div>
-                    <div class="thumb"></div>
-                </div>
-            </div>
-
-            <!-- Right Arm - gestures welcome -->
-            <div class="android-right-arm" id="rightArm">
-                <div class="upper-arm-a"></div>
-                <div class="elbow-joint"></div>
-                <div class="forearm-a"></div>
-                <div class="wrist-joint"></div>
-                <div class="hand-a gesture-hand">
-                    <div class="palm"></div>
-                    <div class="finger finger-1"></div>
-                    <div class="finger finger-2"></div>
-                    <div class="finger finger-3"></div>
-                    <div class="thumb"></div>
-                </div>
-            </div>
-
-            <!-- Legs -->
-            <div class="android-legs">
-                <div class="android-leg leg-left-a">
-                    <div class="thigh-a"></div>
-                    <div class="knee-joint"></div>
-                    <div class="shin-a"></div>
-                    <div class="foot-a"></div>
-                </div>
-                <div class="android-leg leg-right-a">
-                    <div class="thigh-a"></div>
-                    <div class="knee-joint"></div>
-                    <div class="shin-a"></div>
-                    <div class="foot-a"></div>
-                </div>
-            </div>
-
-            <!-- Base glow shadow -->
-            <div class="android-base-shadow"></div>
-        </div>
-
-        <!-- Luxury Door with Photorealistic Wood -->
+        <!-- 3D Door panel -->
         <div class="door-3d-container">
             <div class="door-panel" id="doorPanel">
                 <div class="door-wood-texture"></div>
@@ -123,575 +46,238 @@
                     <div class="door-detail-middle"></div>
                     <div class="door-detail-bottom"></div>
                 </div>
-                <div class="door-handle-luxury" id="doorHandle"></div>
+                <div class="door-handle-luxury"></div>
             </div>
         </div>
     </div>
 
-    <!-- Main Site Content -->
+    <!-- Main Site -->
     <div class="main-site" id="mainSite">
+
         <!-- Navigation -->
         <nav class="navbar">
             <div class="container">
-                <div class="logo">💎 צמיחה מעצמת</div>
+                <a href="#" class="logo">
+                    <span class="logo-mark">◆</span>
+                    <span class="logo-text">צמיחה מעצמת</span>
+                </a>
                 <ul class="nav-menu">
-                    <li><a href="#problem">הבעיה</a></li>
-                    <li><a href="#solution">הפתרון</a></li>
-                    <li><a href="#blueprint">תוכנית 2026</a></li>
-                    <li><a href="#features">יתרונות</a></li>
-                    <li><a href="#results">תוצאות</a></li>
-                    <li><a href="#contact" class="btn-cta">קבע פגישה</a></li>
+                    <li><a href="#problem">החדרים השקטים</a></li>
+                    <li><a href="#method">השיטה</a></li>
+                    <li><a href="#contact" class="nav-cta">בואו נדבר</a></li>
                 </ul>
             </div>
         </nav>
 
-        <!-- Hero Section -->
+        <!-- Hero -->
         <section class="hero">
-            <div class="hero-bg"></div>
-            <div class="container hero-content-wrapper">
-                <div class="hero-content" data-aos="fade-left" data-aos-delay="3000">
-                    <div class="hero-tagline">שיווק פרימיום לדירות להשכרה</div>
-                    <h1>הפסק להשאיר כסף על השולחן<br><span class="gold-text">מלא את הדירות שלך 24/7</span></h1>
-                    <p class="hero-subtitle">כל שעה ריקה היא כסף אבוד. אנחנו ממלאים את הדירות להשכרה שלך מסביב לשעון עם שיווק מבוסס ביצועים — אחרת לא משלמים.</p>
-                    <div class="cta-group">
-                        <button class="btn-primary">קבע פגישת אסטרטגיה</button>
-                        <span class="trust-text">✓ ללא התחייבות &nbsp;&nbsp; ✓ מבוסס ביצועים &nbsp;&nbsp; ✓ 150+ דירות בניהול</span>
-                    </div>
+            <div class="container hero-container">
+                <div class="hero-eyebrow" data-aos="fade-up">Direct Booking Excellence for Boutique STRs</div>
+                <h1 class="hero-headline" data-aos="fade-up" data-aos-delay="100">
+                    מצוינות<br>
+                    <span class="gold-text">בהזמנה ישירה</span>
+                </h1>
+                <p class="hero-lede" data-aos="fade-up" data-aos-delay="250">
+                    הפסיקו להישען על אפליקציות צד שלישי.<br>
+                    בעלות מלאה על מערכת היחסים עם האורח.
+                </p>
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#contact" class="btn-primary">בואו נדבר</a>
+                    <a href="#method" class="btn-ghost">הכירו את השיטה</a>
                 </div>
-
-                <!-- Luxury Visual -->
-                <div class="hero-visual" data-aos="fade-right" data-aos-delay="3000">
-                    <div class="visual-frame">
-                        <div class="visual-content">
-                            <div class="luxury-suite">
-                                <div class="suite-window">
-                                    <div class="window-view"></div>
-                                </div>
-                                <div class="suite-bed"></div>
-                                <div class="suite-lamp"></div>
-                                <div class="suite-floor"></div>
-                            </div>
-                            <div class="live-stats">
-                                <div class="stat-pill">
-                                    <span class="stat-dot"></span>
-                                    <span>4 הזמנות חדשות היום</span>
-                                </div>
-                                <div class="stat-pill">
-                                    <span class="stat-dot gold"></span>
-                                    <span>תפוסה: 87%</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-fineprint" data-aos="fade-up" data-aos-delay="600">
+                    בוטיק · אישי · ללא אלגוריתם בין הלקוח לבינך
                 </div>
             </div>
 
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator">
-                <span>גלול למטה</span>
-                <div class="scroll-arrow"></div>
+            <div class="hero-scroll-cue">
+                <span>גלילה</span>
+                <div class="scroll-line"></div>
             </div>
         </section>
 
-        <!-- The Hard Truth Section - Premium -->
-        <section id="problem" class="problem">
+        <!-- The Problem: Empty Rooms -->
+        <section id="problem" class="problem-quiet">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label pain-label">האמת הכואבת</div>
-                    <h2>דירות ריקות = דימום כסף</h2>
-                    <p class="section-subtitle">כל שעה שהדלת שלך סגורה, אתה מפסיד 300 ש״ח</p>
-                </div>
-                <div class="problem-grid">
-                    <div class="problem-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="premium-icon icon-money">
-                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-                                <path d="M32 14v36M40 22c0-3-4-5-8-5s-8 2-8 6c0 8 16 6 16 14 0 4-4 6-8 6s-8-2-8-5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                                <path d="M20 42l24-20" stroke="#FF6B6B" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
-                            </svg>
-                        </div>
-                        <h3>כל שעה = 300 ש״ח אבודים</h3>
-                        <p>זה המספר. זה מה שאתה מפסיד כל שעה. דירה של 4 חדרים בתל אביב שעומדת ריקה שבוע? <strong>50,400 ש״ח</strong> שנעלמו. זה הרוצח השקט של העסק שלך.</p>
+                <div class="section-eyebrow" data-aos="fade-up">החדרים השקטים</div>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    כשהדלת לא נפתחת,<br>
+                    <span class="gold-text">השקט הוא לא שלווה.</span>
+                </h2>
+
+                <div class="problem-points">
+                    <div class="problem-point" data-aos="fade-up" data-aos-delay="200">
+                        <div class="point-figure">15–20%</div>
+                        <p>מכל לילה הולך לפלטפורמת ההזמנות.<br>זה לא דמי ניהול. זה מס על מערכת היחסים שלכם עם האורח.</p>
                     </div>
-                    <div class="problem-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="premium-icon icon-chaos">
-                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="10" y="14" width="44" height="36" rx="4" stroke="currentColor" stroke-width="2"/>
-                                <path d="M20 24h24M20 32h18M20 40h20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                <circle cx="48" cy="14" r="8" fill="#FF6B6B"/>
-                                <path d="M45 14l6-6M45 14l6 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
-                            </svg>
-                        </div>
-                        <h3>וואטסאפ בלגן = הזמנות אבודות</h3>
-                        <p>87 הודעות לא נענו. 3 כפילויות החודש. לקוח מחכה 2 שעות - עבר למתחרה. אתה לא מנהל עסק, <strong>אתה כבאי</strong>. כל הודעה היא שקל שבורח.</p>
+                    <div class="problem-point" data-aos="fade-up" data-aos-delay="300">
+                        <div class="point-figure">∅</div>
+                        <p>אין לכם רשימת תפוצה. אין נתוני אורחים. אין יחסי המשך.<br>אורח שעזב — עזב לאלגוריתם, לא אליכם.</p>
                     </div>
-                    <div class="problem-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="premium-icon icon-blind">
-                            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6 32c0 0 10-16 26-16s26 16 26 16-10 16-26 16S6 32 6 32z" stroke="currentColor" stroke-width="2"/>
-                                <circle cx="32" cy="32" r="8" stroke="currentColor" stroke-width="2"/>
-                                <path d="M12 12l40 40" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round"/>
-                            </svg>
-                        </div>
-                        <h3>אתה מנחש. השוק מנצח.</h3>
-                        <p>איזה ערוץ מביא לקוחות יקרים? <strong>אין לך מושג.</strong> מתי להעלות מחירים? <strong>אתה מנחש.</strong> בינתיים, המתחרים שלך עם נתונים בזמן אמת גונבים את השוק שלך.</p>
+                    <div class="problem-point" data-aos="fade-up" data-aos-delay="400">
+                        <div class="point-figure">24/7</div>
+                        <p>הוואטסאפ מתעורר בארבע לפנות בוקר.<br>עסק שלא ישן זה לא יוקרה — זה שחיקה.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Anti-Commission Section -->
-        <section id="anti-commission" class="anti-commission">
+        <!-- The Method: Blueprint -->
+        <section id="method" class="method">
             <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label anti-label">ההבדל המהפכני</div>
-                    <h2>תפסיק לשלם 15-20% לפלטפורמות</h2>
-                    <p class="section-subtitle">קבל הזמנות ישירות בוואטסאפ וטלפון — והשאר את הכסף אצלך</p>
-                </div>
-                <div class="commission-comparison" data-aos="zoom-in">
-                    <div class="comparison-card old-way">
-                        <div class="way-label">❌ הדרך הישנה</div>
-                        <h3>פלטפורמות ענק</h3>
-                        <div class="percentage-display">-20%</div>
-                        <ul>
-                            <li>עמלה של 15-20% על כל הזמנה</li>
-                            <li>הלקוחות שייכים לפלטפורמה</li>
-                            <li>תחרות עם 1000 דירות</li>
-                            <li>אלגוריתם מחליט מי נראה</li>
-                            <li>בלי קשר אישי עם הלקוח</li>
-                        </ul>
-                        <div class="way-result lose">5,000 ש״ח/חודש לפלטפורמה</div>
-                    </div>
-                    <div class="vs-divider">
-                        <span>VS</span>
-                    </div>
-                    <div class="comparison-card new-way">
-                        <div class="way-label">✅ הדרך החדשה</div>
-                        <h3>הזמנות ישירות</h3>
-                        <div class="percentage-display gold">0%</div>
-                        <ul>
-                            <li>וואטסאפ ישיר ללקוח</li>
-                            <li>הלקוחות שלך - לחיים</li>
-                            <li>שיווק ממוקד רק אליך</li>
-                            <li>אתה שולט במחיר</li>
-                            <li>לקוחות חוזרים = זהב</li>
-                        </ul>
-                        <div class="way-result win">5,000 ש״ח/חודש בכיס שלך</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <div class="section-eyebrow" data-aos="fade-up">השיטה · 2026</div>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    דרך מדודה לבעלות מחודשת<br>
+                    <span class="gold-text">על האורח שלכם.</span>
+                </h2>
+                <p class="section-lede" data-aos="fade-up" data-aos-delay="200">
+                    שלוש פאזות. תשעים יום. מודל שעובד עבור נכסי בוטיק שמעדיפים שקט אסטרטגי על פני קמפיינים רועשים.
+                </p>
 
-        <!-- Case Study Section - From Vacant to Booked -->
-        <section id="case-study" class="case-study">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label success-label">מקרה בוחן</div>
-                    <h2>מריק למלא</h2>
-                    <p class="section-subtitle">30% עלייה בהזמנות ישירות. בלי עמלות. בלי פלטפורמות. רק לקוחות.</p>
-                </div>
-                <div class="case-study-grid">
-                    <div class="calendar-showcase" data-aos="fade-left">
-                        <div class="calendar-label before">לפני</div>
-                        <div class="calendar">
-                            <div class="calendar-header">
-                                <div class="day-name">א׳</div>
-                                <div class="day-name">ב׳</div>
-                                <div class="day-name">ג׳</div>
-                                <div class="day-name">ד׳</div>
-                                <div class="day-name">ה׳</div>
-                                <div class="day-name">ו׳</div>
-                                <div class="day-name">ש׳</div>
-                            </div>
-                            <div class="calendar-grid">
-                                <div class="day booked">1</div>
-                                <div class="day empty">2</div>
-                                <div class="day empty">3</div>
-                                <div class="day empty">4</div>
-                                <div class="day booked">5</div>
-                                <div class="day empty">6</div>
-                                <div class="day empty">7</div>
-                                <div class="day empty">8</div>
-                                <div class="day empty">9</div>
-                                <div class="day empty">10</div>
-                                <div class="day booked">11</div>
-                                <div class="day empty">12</div>
-                                <div class="day empty">13</div>
-                                <div class="day empty">14</div>
-                                <div class="day empty">15</div>
-                                <div class="day booked">16</div>
-                                <div class="day empty">17</div>
-                                <div class="day empty">18</div>
-                                <div class="day empty">19</div>
-                                <div class="day empty">20</div>
-                                <div class="day empty">21</div>
-                                <div class="day empty">22</div>
-                                <div class="day empty">23</div>
-                                <div class="day booked">24</div>
-                                <div class="day empty">25</div>
-                                <div class="day empty">26</div>
-                                <div class="day empty">27</div>
-                                <div class="day empty">28</div>
-                                <div class="day empty">29</div>
-                                <div class="day empty">30</div>
-                            </div>
-                            <div class="calendar-stats">
-                                <span>תפוסה: <strong class="low">17%</strong></span>
-                                <span>הכנסה: <strong class="low">6,500 ש״ח</strong></span>
-                            </div>
-                        </div>
+                <div class="blueprint-rail">
+                    <div class="rail-line"></div>
+
+                    <div class="rail-stage" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stage-numeral">I</div>
+                        <h3>איתור · Audit</h3>
+                        <p>מיפוי שקט של מקורות התנועה, התמחור, וחוויית הקבלה. דוח בודד — מה עובד, מה לא, ומה אפשר להחזיר ביתית.</p>
+                        <span class="stage-window">שבוע 1–2</span>
                     </div>
 
-                    <div class="arrow-transformation" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="transformation-icon">→</div>
-                        <div class="transformation-label">30 יום</div>
+                    <div class="rail-stage" data-aos="fade-up" data-aos-delay="250">
+                        <div class="stage-numeral">II</div>
+                        <h3>בנייה · Build</h3>
+                        <p>נוכחות ישירה: דף נחיתה אישי לנכס, מערך תוכן ויזואלי, ומסלול הזמנה ישיר בוואטסאפ. בלי תלות בפיד של אף אחד.</p>
+                        <span class="stage-window">שבוע 3–6</span>
                     </div>
 
-                    <div class="calendar-showcase" data-aos="fade-right" data-aos-delay="400">
-                        <div class="calendar-label after">אחרי</div>
-                        <div class="calendar filled">
-                            <div class="calendar-header">
-                                <div class="day-name">א׳</div>
-                                <div class="day-name">ב׳</div>
-                                <div class="day-name">ג׳</div>
-                                <div class="day-name">ד׳</div>
-                                <div class="day-name">ה׳</div>
-                                <div class="day-name">ו׳</div>
-                                <div class="day-name">ש׳</div>
-                            </div>
-                            <div class="calendar-grid">
-                                <div class="day booked">1</div>
-                                <div class="day booked">2</div>
-                                <div class="day booked">3</div>
-                                <div class="day empty">4</div>
-                                <div class="day booked">5</div>
-                                <div class="day booked">6</div>
-                                <div class="day booked">7</div>
-                                <div class="day booked">8</div>
-                                <div class="day booked">9</div>
-                                <div class="day empty">10</div>
-                                <div class="day booked">11</div>
-                                <div class="day booked">12</div>
-                                <div class="day booked">13</div>
-                                <div class="day booked">14</div>
-                                <div class="day booked">15</div>
-                                <div class="day booked">16</div>
-                                <div class="day booked">17</div>
-                                <div class="day empty">18</div>
-                                <div class="day booked">19</div>
-                                <div class="day booked">20</div>
-                                <div class="day booked">21</div>
-                                <div class="day booked">22</div>
-                                <div class="day booked">23</div>
-                                <div class="day booked">24</div>
-                                <div class="day booked">25</div>
-                                <div class="day empty">26</div>
-                                <div class="day booked">27</div>
-                                <div class="day booked">28</div>
-                                <div class="day booked">29</div>
-                                <div class="day booked">30</div>
-                            </div>
-                            <div class="calendar-stats">
-                                <span>תפוסה: <strong class="high">87%</strong></span>
-                                <span>הכנסה: <strong class="high">38,400 ש״ח</strong></span>
-                            </div>
-                        </div>
+                    <div class="rail-stage" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stage-numeral">III</div>
+                        <h3>שגרה · Sustain</h3>
+                        <p>אוטומציה עדינה לתמחור, מעקב אורחים חוזרים, וקצב שיווקי שמרגיש כמו אירוח — לא כמו מכירה.</p>
+                        <span class="stage-window">חודש 2–3</span>
                     </div>
                 </div>
-                <div class="case-study-result" data-aos="fade-up" data-aos-delay="600">
-                    <div class="result-stat">
-                        <div class="big-number">+30%</div>
-                        <p>הזמנות ישירות</p>
-                    </div>
-                    <div class="result-stat">
-                        <div class="big-number">0 ש״ח</div>
-                        <p>עמלות לפלטפורמות</p>
-                    </div>
-                    <div class="result-stat">
-                        <div class="big-number">+31,900</div>
-                        <p>ש״ח הכנסה נוספת</p>
-                    </div>
+
+                <div class="method-promise" data-aos="fade-up" data-aos-delay="500">
+                    <div class="promise-line"></div>
+                    <p class="promise-text">
+                        בסוף תשעים יום, הזמנה ישירה תהיה הברירת מחדל.<br>
+                        <em>לא הגרסה הזולה. הגרסה האישית.</em>
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Solution Section -->
-        <section id="solution" class="solution">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label solution-label">הפתרון</div>
-                    <h2>אנחנו ממלאים את הדירות שלך כמו מכונה</h2>
-                </div>
-                <div class="solution-steps">
-                    <div class="step" data-aos="fade-up" data-aos-delay="100">
-                        <div class="step-number">01</div>
-                        <h3>סקירה מלאה של כל הערוצים</h3>
-                        <p>אנחנו סורקים את Airbnb, Booking, ערוצים ישירים ופלטפורמות מקומיות. תוך 48 שעות אתה מקבל דוח פורנזי שמראה בדיוק איפה הכסף שלך דולף.</p>
-                    </div>
-                    <div class="step" data-aos="fade-up" data-aos-delay="200">
-                        <div class="step-number">02</div>
-                        <h3>אסטרטגיית מילוי 24/7</h3>
-                        <p>אנחנו בונים מערכת שממלאת את הדירה שלך אוטומטית. שעות שיא, תמחור דינמי, סגמנטציית אורחים — הכל מותאם להכנסה מקסימלית.</p>
-                    </div>
-                    <div class="step" data-aos="fade-up" data-aos-delay="300">
-                        <div class="step-number">03</div>
-                        <h3>תוצאות תוך 30 יום</h3>
-                        <p>בלי סיפורים. בלי הבטחות. אנחנו מעלים את התפוסה שלך בלפחות 40% או מחזירים לך כל שקל. זהו.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2026 STR Marketing Blueprint - Visual Roadmap -->
-        <section id="blueprint" class="blueprint">
-            <div class="blueprint-grid-bg"></div>
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label blueprint-label">תוכנית 2026</div>
-                    <h2>שרטוט השיווק לדירות להשכרה — <span class="gold-text">2026</span></h2>
-                    <p class="section-subtitle">המסלול המדויק מ"דירה ריקה / רווח נמוך" ל"מלאה 24/7 / מכירות ישירות". בלי ניחושים.</p>
-                </div>
-
-                <div class="blueprint-roadmap">
-                    <!-- Start State -->
-                    <div class="roadmap-marker start" data-aos="zoom-in">
-                        <div class="marker-pulse"></div>
-                        <div class="marker-icon">⚠</div>
-                        <div class="marker-label">היום</div>
-                        <div class="marker-status">ריק / רווח נמוך</div>
-                    </div>
-
-                    <!-- Track with 5 Milestones -->
-                    <div class="roadmap-track">
-                        <div class="track-progress"></div>
-
-                        <div class="roadmap-step step-up" data-aos="fade-up" data-aos-delay="100">
-                            <div class="step-pin">01</div>
-                            <h3>אבחון פורנזי</h3>
-                            <p>סקירת 360° של ערוצים, תמחור, ותוכן. דוח שמראה איפה הכסף דולף.</p>
-                            <span class="step-time">שבוע 1</span>
-                        </div>
-
-                        <div class="roadmap-step step-down" data-aos="fade-up" data-aos-delay="200">
-                            <div class="step-pin">02</div>
-                            <h3>נכסי שיווק פרימיום</h3>
-                            <p>צילום, וידאו, דף נחיתה ממיר וקופי שמוכר — לא רק מתאר.</p>
-                            <span class="step-time">שבוע 2-3</span>
-                        </div>
-
-                        <div class="roadmap-step step-up" data-aos="fade-up" data-aos-delay="300">
-                            <div class="step-pin">03</div>
-                            <h3>מנוע הזמנות ישירות</h3>
-                            <p>וואטסאפ, טלפון, וטופס. כל פנייה הופכת להזמנה — בלי עמלות.</p>
-                            <span class="step-time">שבוע 4</span>
-                        </div>
-
-                        <div class="roadmap-step step-down" data-aos="fade-up" data-aos-delay="400">
-                            <div class="step-pin">04</div>
-                            <h3>תמחור דינמי + אוטומציה</h3>
-                            <p>בינה מלאכותית סוחטת כל שקל מכל שעה. שיא, חורף, קצה — תפוס.</p>
-                            <span class="step-time">חודש 2</span>
-                        </div>
-
-                        <div class="roadmap-step step-up" data-aos="fade-up" data-aos-delay="500">
-                            <div class="step-pin">05</div>
-                            <h3>סקייל ושליטה בשוק</h3>
-                            <p>נתונים בזמן אמת, A/B שיטתי, ולקוחות חוזרים שמייצרים מנוע צמיחה.</p>
-                            <span class="step-time">חודש 3+</span>
-                        </div>
-                    </div>
-
-                    <!-- End State -->
-                    <div class="roadmap-marker end" data-aos="zoom-in" data-aos-delay="600">
-                        <div class="marker-pulse"></div>
-                        <div class="marker-icon">★</div>
-                        <div class="marker-label">2026</div>
-                        <div class="marker-status">מלא 24/7 / מכירות ישירות</div>
+        <!-- Contact -->
+        <section id="contact" class="contact">
+            <div class="container contact-container">
+                <div class="contact-intro" data-aos="fade-up">
+                    <div class="section-eyebrow">בואו נדבר</div>
+                    <h2 class="section-title">
+                        שיחה אחת.<br>
+                        <span class="gold-text">בלי מצגות.</span>
+                    </h2>
+                    <p class="contact-lede">
+                        עשרים דקות בטלפון. נבין אם השיטה מתאימה לנכס שלכם — ואם לא, נגיד את זה ישירות.
+                    </p>
+                    <div class="contact-meta">
+                        <span>תגובה תוך 24 שעות</span>
+                        <span>ללא התחייבות</span>
+                        <span>שיחה אישית · לא צוות מכירות</span>
                     </div>
                 </div>
 
-                <!-- Outcome Summary -->
-                <div class="blueprint-summary" data-aos="fade-up" data-aos-delay="700">
-                    <div class="summary-card">
-                        <div class="summary-number">90 ימים</div>
-                        <div class="summary-text">ממצב נוכחי לרווח חדש</div>
+                <form class="contact-form" id="contactForm" data-aos="fade-up" data-aos-delay="200">
+                    <div class="field">
+                        <label for="name">שם מלא</label>
+                        <input id="name" name="name" type="text" required autocomplete="name">
                     </div>
-                    <div class="summary-card highlight">
-                        <div class="summary-number">+40%</div>
-                        <div class="summary-text">תפוסה — מובטח בכתב</div>
+                    <div class="field">
+                        <label for="email">אימייל</label>
+                        <input id="email" name="email" type="email" required autocomplete="email">
                     </div>
-                    <div class="summary-card">
-                        <div class="summary-number">0%</div>
-                        <div class="summary-text">עמלות לפלטפורמות</div>
+                    <div class="field">
+                        <label for="property">שם הנכס / מיקום</label>
+                        <input id="property" name="property" type="text" placeholder="לדוגמה: דירת בוטיק נווה צדק">
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features Section -->
-        <section id="features" class="features">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label">מה שתקבל</div>
-                    <h2>כל מה שצריך כדי לשלוט בשוק</h2>
-                </div>
-                <div class="features-grid">
-                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="feature-icon">🔄</div>
-                        <h3>מערכת מילוי אוטומטית</h3>
-                        <p>הדירה שלך מתמלאת מעצמה בכל הערוצים. סנכרון הזמנות בזמן אמת. אפס עבודה ידנית.</p>
+                    <div class="field">
+                        <label for="message">מה תרצו לשפר?</label>
+                        <textarea id="message" name="message" rows="4" placeholder="ספרו בקצרה — מה המצב היום, ומה היה נראה כמו 'מצוין' עבורכם."></textarea>
                     </div>
-                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="feature-icon">📊</div>
-                        <h3>ניתוח נתונים בזמן אמת</h3>
-                        <p>תדע בדיוק איזה סוג אורחים משלם הכי הרבה, איזה ערוצים מניבים, ומתי להעלות מחירים.</p>
-                    </div>
-                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="feature-icon">💰</div>
-                        <h3>תמחור דינמי</h3>
-                        <p>תמחור מונחה בינה מלאכותית שסוחט כל שקל משעות שיא וממלא את השעות השקטות.</p>
-                    </div>
-                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
-                        <div class="feature-icon">🎯</div>
-                        <h3>תפוסה של 90%+</h3>
-                        <p>הדירה שלך עובדת כמעט בכל שעה. דירות ריקות הופכות לזיכרון רחוק.</p>
-                    </div>
-                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
-                        <div class="feature-icon">⏰</div>
-                        <h3>ניהול מלא 24/7</h3>
-                        <p>אנחנו מטפלים בהזמנות, צ'ק-אין, בעיות וביקורות. אתה פשוט גובה את הכסף.</p>
-                    </div>
-                    <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="feature-icon">✅</div>
-                        <h3>אחריות 100%</h3>
-                        <p>אם התפוסה לא עולה ב-40%+, אנחנו מחזירים הכל. בלי חוזים. בלי פרצות.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Results Section -->
-        <section id="results" class="results">
-            <div class="container">
-                <div class="section-header" data-aos="fade-up">
-                    <div class="section-label">מספרים אמיתיים</div>
-                    <h2>בעלי נכסים שהתעוררו</h2>
-                </div>
-                <div class="results-stats">
-                    <div class="stat" data-aos="flip-up" data-aos-delay="100">
-                        <div class="stat-number">340%</div>
-                        <p>עלייה בהכנסה חודשית</p>
-                        <small>3 יחידות, תל אביב</small>
-                    </div>
-                    <div class="stat" data-aos="flip-up" data-aos-delay="200">
-                        <div class="stat-number">87%</div>
-                        <p>תפוסה ממוצעת</p>
-                        <small>חודש ראשון איתנו</small>
-                    </div>
-                    <div class="stat" data-aos="flip-up" data-aos-delay="300">
-                        <div class="stat-number">92%</div>
-                        <p>שיעור אורחים חוזרים</p>
-                        <small>בוטיק בירושלים</small>
-                    </div>
-                    <div class="stat" data-aos="flip-up" data-aos-delay="400">
-                        <div class="stat-number">2h</div>
-                        <p>זמן פתרון בעיות</p>
-                        <small>תמיכה 24/7</small>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section id="contact" class="cta">
-            <div class="container" data-aos="zoom-in">
-                <div class="cta-badge">מקומות מוגבלים</div>
-                <h2>המתחרה שלך ממלא את הדירות שלו ברגע זה</h2>
-                <p>קבע שיחת אסטרטגיה חינם. ננתח את הדירה שלך, נראה לך בדיוק כמה כסף אתה מפסיד, ונבנה תוכנית למלא כל חדר — או שלא תשלם.</p>
-                <button class="btn-primary-large">קבע פגישת אסטרטגיה</button>
-                <div class="cta-benefits">
-                    <span>✓ ניתוח חינם</span>
-                    <span>✓ ללא התחייבות</span>
-                    <span>✓ דוח תוך 48 שעות</span>
-                </div>
+                    <button type="submit" class="btn-primary btn-block">שליחה</button>
+                    <p class="form-success" id="formSuccess" hidden>
+                        תודה. ניצור קשר תוך 24 שעות.
+                    </p>
+                </form>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="container">
-                <p>&copy; 2026 צמיחה מעצמת - שיווק דירות להשכרה. כל הזכויות שמורות.</p>
-                <div class="footer-links">
-                    <a href="#">תנאי שימוש</a>
-                    <a href="#">מדיניות פרטיות</a>
-                    <a href="#">צור קשר</a>
+            <div class="container footer-container">
+                <div class="footer-mark">
+                    <span class="logo-mark">◆</span>
+                    <span>צמיחה מעצמת</span>
                 </div>
+                <p class="footer-tagline">Direct Booking Excellence · Boutique STR Marketing</p>
+                <p class="footer-copy">&copy; 2026 — כל הזכויות שמורות.</p>
             </div>
         </footer>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
         AOS.init({
-            duration: 1200,
+            duration: 1100,
             once: true,
-            offset: 100
+            offset: 80,
+            easing: 'ease-out-cubic'
         });
 
-        // Cinematic Sequence - Concierge Android Opens Door
+        // Cinematic door reveal — no android, just door + suite
         window.addEventListener('load', () => {
             const doorScene = document.getElementById('doorScene');
             const mainSite = document.getElementById('mainSite');
-            const concierge = document.getElementById('concierge');
 
             setTimeout(() => {
-                // Phase 1 (0-1s): Zoom in - approach the entrance
+                // Phase 1 — slow approach
                 doorScene.classList.add('door-zoom-in');
 
-                // Phase 2 (1-2s): Android reaches for handle
-                setTimeout(() => {
-                    if (concierge) concierge.classList.add('android-reaching');
-                }, 1000);
+                // Phase 2 — door swings inward, revealing suite
+                setTimeout(() => doorScene.classList.add('door-open'), 1400);
 
-                // Phase 3 (2-2.5s): Hand grabs the handle
-                setTimeout(() => {
-                    if (concierge) concierge.classList.add('android-gripping');
-                }, 2000);
-
-                // Phase 4 (2.5-4s): Door opens backward, android pulls it
-                setTimeout(() => {
-                    doorScene.classList.add('door-open');
-                    if (concierge) concierge.classList.add('android-pulling');
-                }, 2500);
-
-                // Phase 5 (4-4.5s): Welcome gesture with right arm
-                setTimeout(() => {
-                    if (concierge) concierge.classList.add('android-welcome');
-                }, 4000);
-
-                // Phase 6 (4.5-5.5s): Camera pushes forward into room
+                // Phase 3 — camera pushes through into the room
                 setTimeout(() => {
                     doorScene.classList.add('push-forward');
                     mainSite.classList.add('site-reveal');
-                }, 4500);
+                }, 3600);
 
-                // Phase 7: Clean up
-                setTimeout(() => {
-                    doorScene.style.display = 'none';
-                }, 6000);
-            }, 300);
+                // Phase 4 — clean up
+                setTimeout(() => { doorScene.style.display = 'none'; }, 5400);
+            }, 250);
         });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
+        });
+
+        // Contact form (frontend confirmation only — wire to backend later)
+        const form = document.getElementById('contactForm');
+        const success = document.getElementById('formSuccess');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.querySelectorAll('input, textarea, button').forEach(el => el.disabled = true);
+            success.hidden = false;
         });
     </script>
 </body>

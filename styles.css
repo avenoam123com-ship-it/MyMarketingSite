@@ -173,30 +173,54 @@ body {
     height: 600px;
     transform-style: preserve-3d;
     transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+    will-change: transform;
 }
 
-/* Door Panel - opens inward (backwards) */
+/* Photorealistic Wood Door Panel */
 .door-panel {
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(135deg, #2A1F12 0%, #1A120A 100%),
-        repeating-linear-gradient(
-            90deg,
-            transparent 0px,
-            transparent 40px,
-            rgba(197, 160, 89, 0.05) 40px,
-            rgba(197, 160, 89, 0.05) 42px
-        );
+        linear-gradient(135deg, #3a2515 0%, #1f1208 50%, #2a1810 100%);
     border: 4px solid var(--burnished-gold);
     box-shadow:
-        inset 0 0 60px rgba(197, 160, 89, 0.2),
+        inset 0 0 60px rgba(197, 160, 89, 0.15),
         0 0 80px rgba(0, 0, 0, 0.8),
         0 20px 60px rgba(0, 0, 0, 0.6);
     transform-origin: right center;
     transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     backface-visibility: visible;
+    will-change: transform;
+    overflow: hidden;
+}
+
+.door-wood-texture {
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            transparent 0px,
+            rgba(20, 10, 5, 0.4) 2px,
+            transparent 4px,
+            rgba(60, 35, 20, 0.3) 8px,
+            transparent 12px,
+            rgba(30, 18, 10, 0.4) 16px,
+            transparent 20px,
+            rgba(75, 45, 25, 0.2) 24px
+        ),
+        repeating-linear-gradient(
+            180deg,
+            transparent 0px,
+            rgba(0, 0, 0, 0.1) 40px,
+            transparent 80px,
+            rgba(50, 30, 18, 0.15) 120px,
+            transparent 160px
+        ),
+        radial-gradient(ellipse at 30% 40%, rgba(90, 55, 30, 0.3) 0%, transparent 40%),
+        radial-gradient(ellipse at 70% 60%, rgba(90, 55, 30, 0.3) 0%, transparent 40%);
+    pointer-events: none;
 }
 
 /* Ornate frame around door */
@@ -261,17 +285,692 @@ body {
         inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+/* ===== HIGH-FIDELITY CONCIERGE ANDROID ===== */
+.concierge-android {
+    position: absolute;
+    top: 50%;
+    left: calc(50% - 280px);
+    transform: translateY(-50%);
+    width: 180px;
+    height: 480px;
+    z-index: 5;
+    transform-style: preserve-3d;
+    will-change: transform;
+    animation: androidIdle 3s ease-in-out infinite;
+}
+
+@keyframes androidIdle {
+    0%, 100% { transform: translateY(-50%) translateY(0); }
+    50% { transform: translateY(-50%) translateY(-3px); }
+}
+
+/* Brushed Silver Metal Base */
+.brushed-silver {
+    background:
+        linear-gradient(90deg,
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(200, 200, 210, 0.95) 20%,
+            rgba(165, 165, 175, 0.95) 50%,
+            rgba(210, 210, 220, 0.95) 80%,
+            rgba(255, 255, 255, 0.15) 100%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.04) 0px,
+            rgba(0, 0, 0, 0.04) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+}
+
+/* Android Head */
+.android-head {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 110px;
+}
+
+.head-dome {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 70px;
+    background:
+        linear-gradient(135deg,
+            rgba(240, 240, 245, 1) 0%,
+            rgba(190, 190, 200, 1) 30%,
+            rgba(150, 150, 160, 1) 50%,
+            rgba(200, 200, 210, 1) 75%,
+            rgba(240, 240, 245, 1) 100%
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.03) 0px,
+            rgba(0, 0, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    border-radius: 45px 45px 15px 15px;
+    border: 2px solid rgba(197, 160, 89, 0.6);
+    box-shadow:
+        inset -8px -8px 20px rgba(0, 0, 0, 0.4),
+        inset 8px 8px 15px rgba(255, 255, 255, 0.3),
+        0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.head-shine {
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    width: 20px;
+    height: 30px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, transparent 100%);
+    border-radius: 50%;
+    filter: blur(4px);
+}
+
+.head-visor {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65px;
+    height: 25px;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0A0A0A 100%);
+    border-radius: 6px;
+    border: 2px solid var(--burnished-gold);
+    display: flex;
+    gap: 10px;
+    padding: 4px 8px;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        inset 0 0 10px rgba(197, 160, 89, 0.4),
+        0 3px 10px rgba(0, 0, 0, 0.8);
+    z-index: 2;
+}
+
+.visor-glow-strip {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold-bright) 50%, transparent 100%);
+    transform: translateY(-50%);
+    animation: visorScan 3s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--burnished-gold);
+}
+
+@keyframes visorScan {
+    0%, 100% { opacity: 0.5; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 1; transform: translateY(-50%) translateX(5px); }
+}
+
+.android-eye {
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at 30% 30%, var(--gold-bright) 0%, var(--burnished-gold) 60%, #8A7040 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--burnished-gold), inset 0 0 4px rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    animation: eyeGlowSteady 2s ease-in-out infinite;
+}
+
+@keyframes eyeGlowSteady {
+    0%, 100% { box-shadow: 0 0 10px var(--burnished-gold); }
+    50% { box-shadow: 0 0 18px var(--gold-bright); }
+}
+
+.head-chin {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 25px;
+    background: linear-gradient(180deg,
+        rgba(180, 180, 190, 1) 0%,
+        rgba(140, 140, 150, 1) 100%);
+    border-radius: 0 0 20px 20px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-top: none;
+    box-shadow: inset 0 -3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.head-side-plate {
+    position: absolute;
+    top: 20px;
+    width: 12px;
+    height: 40px;
+    background: linear-gradient(90deg, rgba(197, 160, 89, 0.9) 0%, rgba(229, 192, 120, 0.7) 100%);
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(197, 160, 89, 0.4);
+}
+
+.left-plate { left: 0; }
+.right-plate { right: 0; }
+
+.head-antenna-a {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 28px;
+    background: linear-gradient(180deg, var(--gold-bright) 0%, var(--burnished-gold) 100%);
+    border-radius: 2px;
+}
+
+.antenna-tip {
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, var(--gold-bright) 0%, var(--burnished-gold) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--gold-bright);
+    animation: antennaTipGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes antennaTipGlow {
+    0%, 100% { box-shadow: 0 0 10px var(--burnished-gold); }
+    50% { box-shadow: 0 0 20px var(--gold-bright); }
+}
+
+/* Android Neck */
+.android-neck {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    background: linear-gradient(180deg,
+        rgba(120, 120, 130, 1) 0%,
+        rgba(90, 90, 100, 1) 50%,
+        rgba(120, 120, 130, 1) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.neck-ring {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, var(--burnished-gold) 50%, transparent 100%);
+}
+
+/* Android Torso */
+.android-torso {
+    position: absolute;
+    top: 115px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 160px;
+}
+
+.shoulder-piece {
+    position: absolute;
+    top: 0;
+    width: 35px;
+    height: 40px;
+    background:
+        linear-gradient(135deg,
+            rgba(240, 240, 245, 1) 0%,
+            rgba(180, 180, 190, 1) 50%,
+            rgba(140, 140, 150, 1) 100%);
+    border: 2px solid rgba(197, 160, 89, 0.5);
+    box-shadow:
+        inset -4px -4px 10px rgba(0, 0, 0, 0.3),
+        inset 4px 4px 8px rgba(255, 255, 255, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.left-shoulder {
+    left: 0;
+    border-radius: 20px 8px 15px 20px;
+}
+
+.right-shoulder {
+    right: 0;
+    border-radius: 8px 20px 20px 15px;
+}
+
+.chest-armor {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 130px;
+    background:
+        linear-gradient(135deg,
+            rgba(230, 230, 240, 1) 0%,
+            rgba(170, 170, 180, 1) 30%,
+            rgba(130, 130, 140, 1) 50%,
+            rgba(180, 180, 190, 1) 75%,
+            rgba(220, 220, 230, 1) 100%
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.03) 0px,
+            rgba(0, 0, 0, 0.03) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    border-radius: 15px 15px 30px 30px;
+    border: 2px solid rgba(197, 160, 89, 0.5);
+    box-shadow:
+        inset -6px -6px 15px rgba(0, 0, 0, 0.3),
+        inset 6px 6px 12px rgba(255, 255, 255, 0.2),
+        0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.center-seam {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(197, 160, 89, 0.6) 20%,
+        rgba(197, 160, 89, 0.6) 80%,
+        transparent 100%);
+}
+
+.chest-badge {
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 45px;
+    background:
+        radial-gradient(circle at 30% 30%,
+            var(--gold-bright) 0%,
+            var(--burnished-gold) 50%,
+            var(--gold-dim) 100%);
+    border-radius: 50%;
+    border: 2px solid var(--burnished-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 20px rgba(197, 160, 89, 0.5),
+        inset -3px -3px 8px rgba(0, 0, 0, 0.3),
+        inset 3px 3px 6px rgba(255, 255, 255, 0.4);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { box-shadow: 0 0 15px rgba(197, 160, 89, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(229, 192, 120, 0.7); }
+}
+
+.badge-inner {
+    width: 25px;
+    height: 25px;
+    background: linear-gradient(135deg, var(--deep-onyx) 0%, #1A1A1A 100%);
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px rgba(197, 160, 89, 0.5);
+}
+
+.chest-vent {
+    position: absolute;
+    top: 85px;
+    width: 18px;
+    height: 25px;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.8) 0px,
+            rgba(0, 0, 0, 0.8) 2px,
+            rgba(197, 160, 89, 0.3) 2px,
+            rgba(197, 160, 89, 0.3) 3px
+        );
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    border-radius: 3px;
+}
+
+.left-vent { left: 15px; }
+.right-vent { right: 15px; }
+
+.waist-ring {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 10px;
+    background: linear-gradient(180deg,
+        rgba(197, 160, 89, 0.9) 0%,
+        rgba(138, 112, 64, 1) 100%);
+    border-radius: 5px;
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, 0.5),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Android Arms */
+.android-left-arm,
+.android-right-arm {
+    position: absolute;
+    top: 120px;
+    width: 35px;
+    height: 160px;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.android-left-arm {
+    left: -5px;
+    transform-origin: top right;
+}
+
+.android-right-arm {
+    right: -5px;
+    transform-origin: top left;
+}
+
+.upper-arm-a {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 65px;
+    background:
+        linear-gradient(90deg,
+            rgba(230, 230, 240, 1) 0%,
+            rgba(160, 160, 170, 1) 50%,
+            rgba(210, 210, 220, 1) 100%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.04) 0px,
+            rgba(0, 0, 0, 0.04) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    border-radius: 12px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+        inset -3px 0 6px rgba(0, 0, 0, 0.3),
+        inset 3px 0 4px rgba(255, 255, 255, 0.2),
+        0 5px 12px rgba(0, 0, 0, 0.4);
+}
+
+.android-left-arm .upper-arm-a { left: 2px; }
+.android-right-arm .upper-arm-a { right: 2px; }
+
+.elbow-joint {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle at 30% 30%,
+        var(--gold-bright) 0%,
+        var(--burnished-gold) 70%);
+    border-radius: 50%;
+    border: 1px solid var(--burnished-gold);
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
+    z-index: 2;
+}
+
+.forearm-a {
+    position: absolute;
+    top: 70px;
+    width: 26px;
+    height: 60px;
+    background:
+        linear-gradient(90deg,
+            rgba(230, 230, 240, 1) 0%,
+            rgba(160, 160, 170, 1) 50%,
+            rgba(210, 210, 220, 1) 100%
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(0, 0, 0, 0.04) 0px,
+            rgba(0, 0, 0, 0.04) 1px,
+            transparent 1px,
+            transparent 3px
+        );
+    border-radius: 10px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+        inset -2px 0 5px rgba(0, 0, 0, 0.3),
+        0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.android-left-arm .forearm-a { left: 4px; }
+.android-right-arm .forearm-a { right: 4px; }
+
+.wrist-joint {
+    position: absolute;
+    top: 125px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 10px;
+    background: linear-gradient(180deg,
+        var(--burnished-gold) 0%,
+        var(--gold-dim) 100%);
+    border-radius: 4px;
+    z-index: 2;
+}
+
+.hand-a {
+    position: absolute;
+    top: 130px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 28px;
+    transition: transform 0.5s ease-in-out;
+    will-change: transform;
+}
+
+.palm {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 22px;
+    background:
+        linear-gradient(135deg,
+            rgba(210, 210, 220, 1) 0%,
+            rgba(150, 150, 160, 1) 50%,
+            rgba(190, 190, 200, 1) 100%);
+    border-radius: 6px 6px 8px 8px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+        inset 0 0 5px rgba(0, 0, 0, 0.3),
+        0 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.finger, .thumb {
+    position: absolute;
+    background: linear-gradient(180deg,
+        rgba(200, 200, 210, 1) 0%,
+        rgba(150, 150, 160, 1) 100%);
+    border-radius: 2px;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    top: -6px;
+}
+
+.finger-1 { left: 2px; width: 3px; height: 10px; }
+.finger-2 { left: 7px; width: 3px; height: 12px; }
+.finger-3 { left: 12px; width: 3px; height: 11px; }
+.thumb { right: -2px; top: 5px; width: 3px; height: 8px; transform: rotate(30deg); }
+
+/* Legs */
+.android-legs {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 200px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.android-leg {
+    position: relative;
+    width: 40px;
+    height: 200px;
+}
+
+.thigh-a {
+    position: absolute;
+    top: 0;
+    width: 38px;
+    height: 90px;
+    background:
+        linear-gradient(90deg,
+            rgba(200, 200, 210, 1) 0%,
+            rgba(140, 140, 150, 1) 50%,
+            rgba(180, 180, 190, 1) 100%
+        );
+    border-radius: 10px 10px 8px 8px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+        inset -4px 0 8px rgba(0, 0, 0, 0.3),
+        0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.knee-joint {
+    position: absolute;
+    top: 82px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%,
+        var(--gold-bright) 0%,
+        var(--burnished-gold) 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(197, 160, 89, 0.4);
+    z-index: 2;
+}
+
+.shin-a {
+    position: absolute;
+    top: 95px;
+    width: 36px;
+    height: 85px;
+    background:
+        linear-gradient(90deg,
+            rgba(200, 200, 210, 1) 0%,
+            rgba(140, 140, 150, 1) 50%,
+            rgba(180, 180, 190, 1) 100%
+        );
+    border-radius: 8px;
+    border: 1px solid rgba(197, 160, 89, 0.4);
+    box-shadow:
+        inset -3px 0 6px rgba(0, 0, 0, 0.3),
+        0 4px 10px rgba(0, 0, 0, 0.4);
+    left: 1px;
+}
+
+.foot-a {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
+    height: 18px;
+    background: linear-gradient(180deg,
+        var(--burnished-gold) 0%,
+        var(--gold-dim) 100%);
+    border-radius: 6px 6px 4px 4px;
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.6),
+        inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.android-base-shadow {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 20px;
+    background: radial-gradient(ellipse at center,
+        rgba(0, 0, 0, 0.6) 0%,
+        transparent 70%);
+    filter: blur(8px);
+}
+
+/* Android Animation States */
+.concierge-android.android-reaching .android-right-arm {
+    transform: rotateZ(85deg) translateX(15px) translateY(10px);
+}
+
+.concierge-android.android-gripping .hand-a:not(.gesture-hand) {
+    transform: translateX(-50%) scale(0.9);
+}
+
+.concierge-android.android-gripping .android-right-arm {
+    transform: rotateZ(90deg) translateX(20px) translateY(15px);
+}
+
+/* Pushing the door inward — arm extends forward (translateZ) following the swinging door */
+.concierge-android.android-pulling .android-right-arm {
+    transform: rotateZ(98deg) translateX(40px) translateY(8px) translateZ(60px);
+}
+
+.concierge-android.android-pulling {
+    transform: translateY(-50%) translateX(15px) translateZ(20px);
+}
+
+/* Welcome gesture — bot steps slightly aside and sweeps the left arm open toward the room */
+.concierge-android.android-welcome {
+    transform: translateY(-50%) translateX(-50px) translateZ(10px);
+}
+
+.concierge-android.android-welcome .android-left-arm {
+    transform: rotateZ(-75deg) translateX(-15px) translateY(25px);
+}
+
 /* Cinematic Zoom-in effect */
 .cinematic-door-scene.door-zoom-in .door-3d-container {
     transform: translate(-50%, -50%) scale(1.15) translateZ(100px);
 }
 
-/* Door opens backward (inward into the room) */
+.cinematic-door-scene.door-zoom-in .concierge-android {
+    transform: translateY(-50%) scale(1.15);
+}
+
+/* Door swings INWARD (away from camera, into the room) — guest POV entering the suite */
 .cinematic-door-scene.door-open .door-panel {
-    transform: rotateY(-110deg) translateZ(-50px);
+    transform: rotateY(115deg) translateZ(-30px);
     box-shadow:
-        inset 0 0 60px rgba(197, 160, 89, 0.3),
-        -40px 20px 100px rgba(0, 0, 0, 0.9);
+        inset 0 0 80px rgba(0, 0, 0, 0.85),
+        inset 60px 0 100px rgba(229, 192, 120, 0.18),
+        40px 30px 120px rgba(0, 0, 0, 0.9);
+}
+
+/* As the door swings inward, the back-side wood gets lit by the warm room ambient */
+.cinematic-door-scene.door-open .door-panel .door-wood-texture {
+    opacity: 0.7;
+    filter: brightness(0.65) sepia(0.2);
 }
 
 /* Push forward - camera moves into the room */
@@ -1665,6 +2364,382 @@ body {
 
 .footer-links a:hover {
     color: var(--burnished-gold);
+}
+
+/* ===== 2026 STR MARKETING BLUEPRINT ===== */
+.blueprint {
+    padding: 130px 0;
+    background: linear-gradient(180deg, var(--dark-slate) 0%, #0f0f0f 50%, var(--deep-onyx) 100%);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(197, 160, 89, 0.15);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.15);
+}
+
+.blueprint::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 30%, rgba(197, 160, 89, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(229, 192, 120, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.blueprint-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(197, 160, 89, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(197, 160, 89, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.6;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+.blueprint-label {
+    color: var(--gold-bright) !important;
+    border-color: rgba(229, 192, 120, 0.5) !important;
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.18) 0%, rgba(197, 160, 89, 0.05) 100%);
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.2);
+}
+
+.blueprint h2 {
+    font-size: 3rem;
+    color: var(--text-light);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.blueprint-roadmap {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 5rem 0 3rem;
+}
+
+/* Start / End State Markers */
+.roadmap-marker {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.roadmap-marker.start {
+    background: radial-gradient(circle at 30% 30%, rgba(255, 107, 107, 0.3) 0%, rgba(20, 10, 10, 0.95) 65%);
+    border: 2px solid rgba(255, 107, 107, 0.5);
+    box-shadow:
+        0 0 50px rgba(255, 107, 107, 0.25),
+        inset 0 0 30px rgba(255, 107, 107, 0.15);
+}
+
+.roadmap-marker.end {
+    background: radial-gradient(circle at 30% 30%, var(--gold-bright) 0%, var(--burnished-gold) 55%, #5a4520 100%);
+    border: 3px solid var(--gold-bright);
+    box-shadow:
+        0 0 60px rgba(229, 192, 120, 0.6),
+        inset 0 0 40px rgba(255, 255, 255, 0.25),
+        inset 0 -10px 30px rgba(90, 69, 32, 0.5);
+    animation: goldGlow 3s ease-in-out infinite;
+}
+
+.marker-pulse {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    opacity: 0;
+    animation: markerPulse 2.5s ease-out infinite;
+}
+
+.roadmap-marker.start .marker-pulse { color: #FF6B6B; }
+.roadmap-marker.end .marker-pulse { color: var(--gold-bright); animation-delay: 0.6s; }
+
+@keyframes markerPulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
+
+.marker-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+    line-height: 1;
+}
+
+.roadmap-marker.start .marker-icon { color: #FF6B6B; filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.6)); }
+.roadmap-marker.end .marker-icon { color: var(--deep-onyx); }
+
+.marker-label {
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.roadmap-marker.start .marker-label { color: rgba(255, 107, 107, 0.85); }
+.roadmap-marker.end .marker-label { color: var(--deep-onyx); }
+
+.marker-status {
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.25;
+    padding: 0 0.4rem;
+}
+
+.roadmap-marker.start .marker-status { color: var(--text-light); }
+.roadmap-marker.end .marker-status { color: var(--deep-onyx); }
+
+/* Track with milestones */
+.roadmap-track {
+    position: relative;
+    padding: 4rem 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+}
+
+.track-progress {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(255, 107, 107, 0.5) 0%, var(--burnished-gold) 50%, var(--gold-bright) 100%);
+    border-radius: 2px;
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.5), 0 0 50px rgba(197, 160, 89, 0.2);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.track-progress::before,
+.track-progress::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    background: var(--gold-bright);
+    box-shadow: 0 0 18px var(--burnished-gold);
+}
+
+.track-progress::before {
+    left: -7px;
+    background: #FF6B6B;
+    box-shadow: 0 0 18px rgba(255, 107, 107, 0.7);
+}
+
+.track-progress::after {
+    right: -7px;
+}
+
+.roadmap-step {
+    background: linear-gradient(135deg, rgba(20, 20, 22, 0.97) 0%, rgba(10, 10, 10, 0.92) 100%);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 12px;
+    padding: 2.2rem 1.2rem 1.4rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.roadmap-step.step-up { transform: translateY(-2.5rem); }
+.roadmap-step.step-down { transform: translateY(2.5rem); }
+
+.roadmap-step::before {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    width: 2px;
+    height: 22px;
+    background: linear-gradient(180deg, transparent 0%, var(--burnished-gold) 100%);
+    transform: translateX(-50%);
+    opacity: 0.6;
+}
+
+.roadmap-step.step-down::before {
+    top: auto;
+    bottom: -22px;
+    background: linear-gradient(0deg, transparent 0%, var(--burnished-gold) 100%);
+}
+
+.roadmap-step:hover {
+    border-color: rgba(229, 192, 120, 0.7);
+    box-shadow:
+        0 25px 60px rgba(197, 160, 89, 0.3),
+        0 0 40px rgba(197, 160, 89, 0.18);
+    background: linear-gradient(135deg, rgba(40, 30, 15, 0.95) 0%, rgba(20, 15, 8, 0.92) 100%);
+}
+
+.roadmap-step.step-up:hover { transform: translateY(-3rem) scale(1.04); }
+.roadmap-step.step-down:hover { transform: translateY(2rem) scale(1.04); }
+
+.step-pin {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--burnished-gold) 0%, var(--gold-bright) 100%);
+    color: var(--deep-onyx);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 900;
+    border: 3px solid var(--deep-onyx);
+    box-shadow:
+        0 0 25px rgba(197, 160, 89, 0.7),
+        inset 0 -4px 8px rgba(90, 69, 32, 0.4),
+        inset 0 4px 8px rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.5px;
+    z-index: 2;
+}
+
+.roadmap-step.step-down .step-pin {
+    top: auto;
+    bottom: -24px;
+}
+
+.roadmap-step h3 {
+    font-size: 1.1rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.6rem;
+    margin-top: 0.6rem;
+    font-weight: 800;
+    line-height: 1.3;
+}
+
+.roadmap-step p {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    opacity: 0.88;
+    margin-bottom: 1.1rem;
+}
+
+.step-time {
+    display: inline-block;
+    font-size: 0.72rem;
+    color: var(--burnished-gold);
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    padding: 0.35rem 0.9rem;
+    border-radius: 3px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Outcome summary */
+.blueprint-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.summary-card {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.75) 0%, rgba(26, 26, 26, 0.55) 100%);
+    border: 1px solid rgba(197, 160, 89, 0.25);
+    border-radius: 10px;
+    padding: 2.2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.summary-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(197, 160, 89, 0.55);
+    box-shadow: 0 20px 45px rgba(197, 160, 89, 0.18);
+}
+
+.summary-card.highlight {
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.2) 0%, rgba(10, 10, 10, 0.7) 100%);
+    border: 2px solid rgba(197, 160, 89, 0.55);
+    box-shadow: 0 0 35px rgba(197, 160, 89, 0.25);
+}
+
+.summary-number {
+    font-size: 3.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--burnished-gold) 0%, var(--gold-bright) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    letter-spacing: -1px;
+}
+
+.summary-text {
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+@media (max-width: 1024px) {
+    .blueprint-roadmap {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 2rem 0;
+    }
+    .roadmap-marker {
+        margin: 0 auto;
+        width: 140px;
+        height: 140px;
+    }
+    .roadmap-track {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 1rem 0;
+    }
+    .track-progress {
+        left: 50%;
+        right: auto;
+        top: 0;
+        bottom: 0;
+        height: auto;
+        width: 4px;
+        background: linear-gradient(180deg, rgba(255, 107, 107, 0.5) 0%, var(--burnished-gold) 50%, var(--gold-bright) 100%);
+        transform: translateX(-50%);
+    }
+    .track-progress::before { left: 50%; top: -7px; transform: translateX(-50%); }
+    .track-progress::after { right: auto; left: 50%; bottom: -7px; top: auto; transform: translateX(-50%); }
+    .roadmap-step.step-up,
+    .roadmap-step.step-down { transform: none; }
+    .roadmap-step.step-up:hover,
+    .roadmap-step.step-down:hover { transform: scale(1.02); }
+    .roadmap-step::before { display: none; }
+    .blueprint-summary { grid-template-columns: 1fr; gap: 1.2rem; }
+    .blueprint h2 { font-size: 2rem; }
+    .summary-number { font-size: 2.5rem; }
 }
 
 /* ===== RESPONSIVE ===== */

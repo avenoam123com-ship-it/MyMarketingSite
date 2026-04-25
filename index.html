@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 <body>
-    <!-- Cinematic Door Opening Animation - First Person POV -->
+    <!-- Cinematic Door Opening Animation with Concierge Android -->
     <div class="cinematic-door-scene" id="doorScene">
         <div class="room-interior">
             <div class="room-ambient-light"></div>
@@ -22,15 +22,108 @@
             <div class="room-right-wall"></div>
         </div>
 
+        <!-- High-Fidelity Concierge Android -->
+        <div class="concierge-android" id="concierge">
+            <!-- Head -->
+            <div class="android-head">
+                <div class="head-dome">
+                    <div class="head-shine"></div>
+                </div>
+                <div class="head-visor">
+                    <div class="visor-glow-strip"></div>
+                    <div class="android-eye eye-left-a"></div>
+                    <div class="android-eye eye-right-a"></div>
+                </div>
+                <div class="head-chin"></div>
+                <div class="head-side-plate left-plate"></div>
+                <div class="head-side-plate right-plate"></div>
+                <div class="head-antenna-a">
+                    <div class="antenna-tip"></div>
+                </div>
+            </div>
+
+            <!-- Neck -->
+            <div class="android-neck">
+                <div class="neck-ring"></div>
+                <div class="neck-ring ring-2"></div>
+            </div>
+
+            <!-- Torso with brushed silver & gold -->
+            <div class="android-torso">
+                <div class="shoulder-piece left-shoulder"></div>
+                <div class="shoulder-piece right-shoulder"></div>
+                <div class="chest-armor">
+                    <div class="chest-seam center-seam"></div>
+                    <div class="chest-badge">
+                        <div class="badge-inner"></div>
+                    </div>
+                    <div class="chest-vent left-vent"></div>
+                    <div class="chest-vent right-vent"></div>
+                </div>
+                <div class="waist-ring"></div>
+            </div>
+
+            <!-- Left Arm - reaches for door handle -->
+            <div class="android-left-arm" id="leftArm">
+                <div class="upper-arm-a"></div>
+                <div class="elbow-joint"></div>
+                <div class="forearm-a"></div>
+                <div class="wrist-joint"></div>
+                <div class="hand-a" id="leftHand">
+                    <div class="palm"></div>
+                    <div class="finger finger-1"></div>
+                    <div class="finger finger-2"></div>
+                    <div class="finger finger-3"></div>
+                    <div class="thumb"></div>
+                </div>
+            </div>
+
+            <!-- Right Arm - gestures welcome -->
+            <div class="android-right-arm" id="rightArm">
+                <div class="upper-arm-a"></div>
+                <div class="elbow-joint"></div>
+                <div class="forearm-a"></div>
+                <div class="wrist-joint"></div>
+                <div class="hand-a gesture-hand">
+                    <div class="palm"></div>
+                    <div class="finger finger-1"></div>
+                    <div class="finger finger-2"></div>
+                    <div class="finger finger-3"></div>
+                    <div class="thumb"></div>
+                </div>
+            </div>
+
+            <!-- Legs -->
+            <div class="android-legs">
+                <div class="android-leg leg-left-a">
+                    <div class="thigh-a"></div>
+                    <div class="knee-joint"></div>
+                    <div class="shin-a"></div>
+                    <div class="foot-a"></div>
+                </div>
+                <div class="android-leg leg-right-a">
+                    <div class="thigh-a"></div>
+                    <div class="knee-joint"></div>
+                    <div class="shin-a"></div>
+                    <div class="foot-a"></div>
+                </div>
+            </div>
+
+            <!-- Base glow shadow -->
+            <div class="android-base-shadow"></div>
+        </div>
+
+        <!-- Luxury Door with Photorealistic Wood -->
         <div class="door-3d-container">
-            <div class="door-panel">
+            <div class="door-panel" id="doorPanel">
+                <div class="door-wood-texture"></div>
                 <div class="door-ornate-frame"></div>
                 <div class="door-inner">
                     <div class="door-detail-top"></div>
                     <div class="door-detail-middle"></div>
                     <div class="door-detail-bottom"></div>
                 </div>
-                <div class="door-handle-luxury"></div>
+                <div class="door-handle-luxury" id="doorHandle"></div>
             </div>
         </div>
     </div>
@@ -44,6 +137,7 @@
                 <ul class="nav-menu">
                     <li><a href="#problem">הבעיה</a></li>
                     <li><a href="#solution">הפתרון</a></li>
+                    <li><a href="#blueprint">תוכנית 2026</a></li>
                     <li><a href="#features">יתרונות</a></li>
                     <li><a href="#results">תוצאות</a></li>
                     <li><a href="#contact" class="btn-cta">קבע פגישה</a></li>
@@ -65,55 +159,29 @@
                     </div>
                 </div>
 
-                <!-- Robot Climbing Stairs -->
-                <div class="robot-container" data-aos="fade-right" data-aos-delay="3000">
-                    <div class="stairs">
-                        <div class="stair stair-1"></div>
-                        <div class="stair stair-2"></div>
-                        <div class="stair stair-3"></div>
-                        <div class="stair stair-4"></div>
-                        <div class="stair stair-5"></div>
-                    </div>
-
-                    <div class="robot" id="robot">
-                        <div class="robot-head">
-                            <div class="head-top"></div>
-                            <div class="head-visor">
-                                <div class="visor-glow"></div>
-                                <div class="eye eye-left"></div>
-                                <div class="eye eye-right"></div>
+                <!-- Luxury Visual -->
+                <div class="hero-visual" data-aos="fade-right" data-aos-delay="3000">
+                    <div class="visual-frame">
+                        <div class="visual-content">
+                            <div class="luxury-suite">
+                                <div class="suite-window">
+                                    <div class="window-view"></div>
+                                </div>
+                                <div class="suite-bed"></div>
+                                <div class="suite-lamp"></div>
+                                <div class="suite-floor"></div>
                             </div>
-                            <div class="antenna"></div>
-                        </div>
-                        <div class="robot-torso">
-                            <div class="chest-plate">
-                                <div class="chest-light"></div>
+                            <div class="live-stats">
+                                <div class="stat-pill">
+                                    <span class="stat-dot"></span>
+                                    <span>4 הזמנות חדשות היום</span>
+                                </div>
+                                <div class="stat-pill">
+                                    <span class="stat-dot gold"></span>
+                                    <span>תפוסה: 87%</span>
+                                </div>
                             </div>
-                            <div class="chest-detail"></div>
                         </div>
-                        <div class="robot-left-arm">
-                            <div class="upper-arm"></div>
-                            <div class="forearm"></div>
-                            <div class="hand"></div>
-                        </div>
-                        <div class="robot-right-arm">
-                            <div class="upper-arm"></div>
-                            <div class="forearm"></div>
-                            <div class="hand"></div>
-                        </div>
-                        <div class="robot-left-leg">
-                            <div class="thigh"></div>
-                            <div class="shin"></div>
-                            <div class="foot"></div>
-                        </div>
-                        <div class="robot-right-leg">
-                            <div class="thigh"></div>
-                            <div class="shin"></div>
-                            <div class="foot"></div>
-                        </div>
-                        <div class="energy-particle p1"></div>
-                        <div class="energy-particle p2"></div>
-                        <div class="energy-particle p3"></div>
                     </div>
                 </div>
             </div>
@@ -374,6 +442,92 @@
             </div>
         </section>
 
+        <!-- 2026 STR Marketing Blueprint - Visual Roadmap -->
+        <section id="blueprint" class="blueprint">
+            <div class="blueprint-grid-bg"></div>
+            <div class="container">
+                <div class="section-header" data-aos="fade-up">
+                    <div class="section-label blueprint-label">תוכנית 2026</div>
+                    <h2>שרטוט השיווק לדירות להשכרה — <span class="gold-text">2026</span></h2>
+                    <p class="section-subtitle">המסלול המדויק מ"דירה ריקה / רווח נמוך" ל"מלאה 24/7 / מכירות ישירות". בלי ניחושים.</p>
+                </div>
+
+                <div class="blueprint-roadmap">
+                    <!-- Start State -->
+                    <div class="roadmap-marker start" data-aos="zoom-in">
+                        <div class="marker-pulse"></div>
+                        <div class="marker-icon">⚠</div>
+                        <div class="marker-label">היום</div>
+                        <div class="marker-status">ריק / רווח נמוך</div>
+                    </div>
+
+                    <!-- Track with 5 Milestones -->
+                    <div class="roadmap-track">
+                        <div class="track-progress"></div>
+
+                        <div class="roadmap-step step-up" data-aos="fade-up" data-aos-delay="100">
+                            <div class="step-pin">01</div>
+                            <h3>אבחון פורנזי</h3>
+                            <p>סקירת 360° של ערוצים, תמחור, ותוכן. דוח שמראה איפה הכסף דולף.</p>
+                            <span class="step-time">שבוע 1</span>
+                        </div>
+
+                        <div class="roadmap-step step-down" data-aos="fade-up" data-aos-delay="200">
+                            <div class="step-pin">02</div>
+                            <h3>נכסי שיווק פרימיום</h3>
+                            <p>צילום, וידאו, דף נחיתה ממיר וקופי שמוכר — לא רק מתאר.</p>
+                            <span class="step-time">שבוע 2-3</span>
+                        </div>
+
+                        <div class="roadmap-step step-up" data-aos="fade-up" data-aos-delay="300">
+                            <div class="step-pin">03</div>
+                            <h3>מנוע הזמנות ישירות</h3>
+                            <p>וואטסאפ, טלפון, וטופס. כל פנייה הופכת להזמנה — בלי עמלות.</p>
+                            <span class="step-time">שבוע 4</span>
+                        </div>
+
+                        <div class="roadmap-step step-down" data-aos="fade-up" data-aos-delay="400">
+                            <div class="step-pin">04</div>
+                            <h3>תמחור דינמי + אוטומציה</h3>
+                            <p>בינה מלאכותית סוחטת כל שקל מכל שעה. שיא, חורף, קצה — תפוס.</p>
+                            <span class="step-time">חודש 2</span>
+                        </div>
+
+                        <div class="roadmap-step step-up" data-aos="fade-up" data-aos-delay="500">
+                            <div class="step-pin">05</div>
+                            <h3>סקייל ושליטה בשוק</h3>
+                            <p>נתונים בזמן אמת, A/B שיטתי, ולקוחות חוזרים שמייצרים מנוע צמיחה.</p>
+                            <span class="step-time">חודש 3+</span>
+                        </div>
+                    </div>
+
+                    <!-- End State -->
+                    <div class="roadmap-marker end" data-aos="zoom-in" data-aos-delay="600">
+                        <div class="marker-pulse"></div>
+                        <div class="marker-icon">★</div>
+                        <div class="marker-label">2026</div>
+                        <div class="marker-status">מלא 24/7 / מכירות ישירות</div>
+                    </div>
+                </div>
+
+                <!-- Outcome Summary -->
+                <div class="blueprint-summary" data-aos="fade-up" data-aos-delay="700">
+                    <div class="summary-card">
+                        <div class="summary-number">90 ימים</div>
+                        <div class="summary-text">ממצב נוכחי לרווח חדש</div>
+                    </div>
+                    <div class="summary-card highlight">
+                        <div class="summary-number">+40%</div>
+                        <div class="summary-text">תפוסה — מובטח בכתב</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-number">0%</div>
+                        <div class="summary-text">עמלות לפלטפורמות</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section id="features" class="features">
             <div class="container">
@@ -485,59 +639,49 @@
             offset: 100
         });
 
-        // Cinematic Door Opening - First Person POV
+        // Cinematic Sequence - Concierge Android Opens Door
         window.addEventListener('load', () => {
             const doorScene = document.getElementById('doorScene');
             const mainSite = document.getElementById('mainSite');
+            const concierge = document.getElementById('concierge');
 
-            // Start cinematic sequence
             setTimeout(() => {
-                // Phase 1: Zoom in on door (VIP approaching)
+                // Phase 1 (0-1s): Zoom in - approach the entrance
                 doorScene.classList.add('door-zoom-in');
 
-                // Phase 2: Door opens inward (concierge welcomes)
+                // Phase 2 (1-2s): Android reaches for handle
+                setTimeout(() => {
+                    if (concierge) concierge.classList.add('android-reaching');
+                }, 1000);
+
+                // Phase 3 (2-2.5s): Hand grabs the handle
+                setTimeout(() => {
+                    if (concierge) concierge.classList.add('android-gripping');
+                }, 2000);
+
+                // Phase 4 (2.5-4s): Door opens backward, android pulls it
                 setTimeout(() => {
                     doorScene.classList.add('door-open');
-                }, 1500);
+                    if (concierge) concierge.classList.add('android-pulling');
+                }, 2500);
 
-                // Phase 3: Push forward into the room
+                // Phase 5 (4-4.5s): Welcome gesture with right arm
+                setTimeout(() => {
+                    if (concierge) concierge.classList.add('android-welcome');
+                }, 4000);
+
+                // Phase 6 (4.5-5.5s): Camera pushes forward into room
                 setTimeout(() => {
                     doorScene.classList.add('push-forward');
                     mainSite.classList.add('site-reveal');
-                }, 3000);
+                }, 4500);
 
-                // Phase 4: Remove door scene
+                // Phase 7: Clean up
                 setTimeout(() => {
                     doorScene.style.display = 'none';
-                }, 4500);
+                }, 6000);
             }, 300);
         });
-
-        // Robot climbing stairs animation
-        const robot = document.getElementById('robot');
-        let stepCount = 0;
-
-        function climbStairs() {
-            stepCount++;
-            const position = (stepCount % 5) * -50;
-            const horizontalPos = (stepCount % 5) * 20;
-
-            if (robot) {
-                robot.style.transform = `translateX(calc(-50% + ${horizontalPos}px)) translateY(${position}px)`;
-
-                if (stepCount % 5 === 0) {
-                    setTimeout(() => {
-                        robot.style.transition = 'none';
-                        robot.style.transform = 'translateX(-50%) translateY(0)';
-                        setTimeout(() => {
-                            robot.style.transition = 'transform 0.6s ease-in-out';
-                        }, 50);
-                    }, 800);
-                }
-            }
-        }
-
-        setInterval(climbStairs, 900);
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

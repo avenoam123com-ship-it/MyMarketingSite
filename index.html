@@ -83,8 +83,8 @@
                     Full ownership of your guest relationship.
                 </p>
                 <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
-                    <a href="#contact" class="btn-primary">Let's Talk</a>
-                    <a href="#method" class="btn-ghost">Meet the Method</a>
+                    <a href="#contact" class="btn-primary" data-magnetic>Let's Talk</a>
+                    <a href="#method" class="btn-ghost" data-magnetic>Meet the Method</a>
                 </div>
                 <div class="hero-fineprint" data-aos="fade-up" data-aos-delay="600">
                     Boutique · Personal · No Algorithm Between You and Your Guest
@@ -145,6 +145,7 @@
 
         <!-- The Problem: Empty Rooms -->
         <section id="problem" class="problem-quiet">
+            <div class="fog-overlay" id="fogOverlay"></div>
             <div class="container">
                 <div class="section-eyebrow" data-aos="fade-up">The Quiet Rooms</div>
                 <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
@@ -273,8 +274,15 @@
         </footer>
     </div>
 
+    <!-- Mobile FAB -->
+    <button id="fabCta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        Let's Talk
+    </button>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
+    <script type="module">
+        import { initAll } from './animations.js';
+
         AOS.init({
             duration: 1100,
             once: true,
@@ -282,28 +290,7 @@
             easing: 'ease-out-cubic'
         });
 
-        // Cinematic door reveal — no android, just door + suite
-        window.addEventListener('load', () => {
-            const doorScene = document.getElementById('doorScene');
-            const mainSite = document.getElementById('mainSite');
-
-            setTimeout(() => {
-                // Phase 1 — slow approach
-                doorScene.classList.add('door-zoom-in');
-
-                // Phase 2 — door swings inward, revealing suite
-                setTimeout(() => doorScene.classList.add('door-open'), 1400);
-
-                // Phase 3 — camera pushes through into the room
-                setTimeout(() => {
-                    doorScene.classList.add('push-forward');
-                    mainSite.classList.add('site-reveal');
-                }, 3600);
-
-                // Phase 4 — clean up
-                setTimeout(() => { doorScene.style.display = 'none'; }, 5400);
-            }, 250);
-        });
+        window.addEventListener('load', () => initAll());
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

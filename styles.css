@@ -1,5 +1,5 @@
 /* =========================================================
-   צמיחה מעצמת · Quiet Luxury · Onyx & Gold
+   Direct Booking Excellence · Quiet Luxury · Onyx & Gold
    ========================================================= */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,7 +21,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: 'Heebo', 'Segoe UI', Tahoma, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
     color: var(--ink);
     background: var(--onyx-deep);
     line-height: 1.65;
@@ -1031,4 +1031,85 @@ body {
     }
     .cinematic-door-scene { transition: opacity 0.6s ease-out; }
     .door-panel { transition: transform 0.8s ease; }
+}
+
+
+/* =========================================================
+   #hard-truth Section
+   ========================================================= */
+
+.hard-truth {
+    padding: var(--section-gap) 0;
+    background: var(--onyx-soft);
+    position: relative;
+}
+
+.hard-truth::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(197,160,89,0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hard-truth-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: clamp(3rem, 6vw, 5rem);
+    border: 1px solid rgba(197,160,89,0.12);
+}
+
+.truth-card {
+    padding: clamp(2rem, 4vw, 3rem);
+    background: var(--onyx);
+    border: 1px solid rgba(197,160,89,0.08);
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.truth-card:hover {
+    background: var(--onyx-soft);
+    border-color: rgba(197,160,89,0.22);
+}
+
+.truth-icon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    font-weight: 300;
+    color: var(--gold-dim);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.truth-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+    line-height: 1.3;
+}
+
+.truth-card p {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    color: var(--ink-mute);
+    line-height: 1.75;
+    font-weight: 300;
+}
+
+.truth-close {
+    margin-top: clamp(3rem, 6vw, 5rem);
+    text-align: center;
+}
+
+.truth-close .btn-ghost {
+    margin-top: 2rem;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .hard-truth-grid {
+        grid-template-columns: 1fr;
+    }
 }

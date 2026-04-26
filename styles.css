@@ -998,6 +998,16 @@ h1, h2, h3, p, span, a, li {
     margin-top: 0.6rem;
 }
 
+.footer-version {
+    font-family: 'Inter', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+    color: var(--ink-faint);
+    opacity: 0.55;
+    margin-top: 0.8rem;
+    text-transform: uppercase;
+}
+
 /* =========================================================
    RESPONSIVE
    ========================================================= */

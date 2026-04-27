@@ -534,7 +534,7 @@ h1, h2, h3, p, span, a, li {
 /* All hero content above the canvas and overlay */
 .hero-container {
     max-width: 880px;
-    text-align: right;
+    text-align: left;
     position: relative;
     z-index: 2;
 }
@@ -909,6 +909,15 @@ h1, h2, h3, p, span, a, li {
     font-size: 0.6rem;
     top: 50%;
     transform: translateY(-50%);
+}
+
+.contact-scarcity {
+    margin-top: 1.6rem;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    opacity: 0.75;
+    font-weight: 400;
 }
 
 /* Form */

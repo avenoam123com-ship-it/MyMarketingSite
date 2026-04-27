@@ -11,50 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Disappointed Guest Intro Scene -->
-    <div class="guest-intro" id="doorScene">
-        <div class="gi-bg"></div>
-
-        <!-- Floating bad notifications -->
-        <div class="gi-notif gi-n1">Platform fee: 19%</div>
-        <div class="gi-notif gi-n2">No guest data available</div>
-        <div class="gi-notif gi-n3">Algorithm changed</div>
-
-        <!-- The guest figure -->
-        <div class="gi-figure" id="giFigure">
-            <div class="gi-head">
-                <div class="gi-eye gi-eye-l"></div>
-                <div class="gi-eye gi-eye-r"></div>
-                <div class="gi-frown"></div>
-            </div>
-            <div class="gi-neck"></div>
-            <div class="gi-upper">
-                <div class="gi-arm gi-arm-l"></div>
-                <div class="gi-torso"></div>
-                <div class="gi-arm gi-arm-r">
-                    <div class="gi-phone">
-                        <div class="gi-phone-screen">
-                            <div class="gi-screen-x"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="gi-legs">
-                <div class="gi-leg gi-leg-l"></div>
-                <div class="gi-leg gi-leg-r"></div>
-            </div>
-        </div>
-
-        <!-- Floor line -->
-        <div class="gi-floor"></div>
-
-        <!-- Caption -->
-        <div class="gi-caption" id="giCaption">
-            <p class="gi-line1">Every guest checked out of your property.</p>
-            <p class="gi-line2">None of them <span class="gold-text">belong to you.</span></p>
-        </div>
-    </div>
-
     <!-- Main Site -->
     <div class="main-site" id="mainSite">
 
@@ -169,46 +125,68 @@
             </div>
         </section>
 
-        <!-- The AI Suite — Window opening into apartment -->
+        <!-- The AI Suite — Hotel Balcony First-Person View -->
         <section id="ai-suite" class="ai-suite">
-            <div class="container ai-suite-layout">
+            <div class="container ai-suite-header">
+                <div class="section-eyebrow" data-aos="fade-up">The Alternative</div>
+                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                    A window into<br>
+                    <span class="gold-text">the quiet suite.</span>
+                </h2>
+                <p class="section-lede" data-aos="fade-up" data-aos-delay="200">
+                    When the algorithm steps aside,<br>this is what ownership feels like.
+                </p>
+            </div>
 
-                <!-- Left: text -->
-                <div class="ai-text">
-                    <div class="section-eyebrow" data-aos="fade-up">The Alternative</div>
-                    <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
-                        A window into<br>
-                        <span class="gold-text">the quiet suite.</span>
-                    </h2>
-                    <p class="section-lede" data-aos="fade-up" data-aos-delay="200">
-                        When the algorithm steps aside,<br>this is what ownership feels like.
-                    </p>
-                </div>
-
-                <!-- Right: opening window -->
-                <div class="window-stage" data-aos="fade-up" data-aos-delay="250">
-                    <div class="apt-window" id="aptWindow">
-                        <div class="apt-frame">
-                            <!-- Interior (behind shutters) -->
-                            <div class="apt-interior">
-                                <div class="apt-sky"></div>
-                                <div class="apt-room-glow"></div>
-                                <div class="apt-lamp-glow"></div>
-                                <div class="apt-curtain apt-curtain-l"></div>
-                                <div class="apt-curtain apt-curtain-r"></div>
-                                <div class="apt-label">
-                                    <span>Your Guest. Your Relationship.</span>
+            <!-- Full-width hotel balcony window -->
+            <div class="window-stage-full" data-aos="fade-up" data-aos-delay="300">
+                <div class="apt-window" id="aptWindow">
+                    <div class="apt-frame">
+                        <!-- Hotel balcony interior (first-person view) -->
+                        <div class="apt-interior" id="hotelView">
+                            <!-- Layer 1: Sky (slowest parallax) -->
+                            <div class="hv-sky" id="hvSky"></div>
+                            <!-- Layer 2: City horizon (medium parallax) -->
+                            <div class="hv-horizon" id="hvHorizon"></div>
+                            <!-- Layer 3: Pool zone (fastest parallax) -->
+                            <div class="hv-poolzone" id="hvPool">
+                                <div class="hv-deck"></div>
+                                <div class="hv-pool-water">
+                                    <div class="hv-shimmer"></div>
+                                    <div class="hv-person hvp1"></div>
+                                    <div class="hv-person hvp2"></div>
+                                    <div class="hv-person hvp3"></div>
                                 </div>
+                                <div class="hv-lounger hvl1"></div>
+                                <div class="hv-lounger hvl2"></div>
+                                <div class="hv-lounger hvl3"></div>
+                                <div class="hv-lounger hvl4"></div>
+                                <div class="hv-umbrella hvu1"></div>
+                                <div class="hv-umbrella hvu2"></div>
                             </div>
-                            <!-- Shutters (open on scroll) -->
-                            <div class="apt-shutter apt-shutter-l" id="shutterL"></div>
-                            <div class="apt-shutter apt-shutter-r" id="shutterR"></div>
+                            <!-- Layer 4: Balcony railing (fixed foreground) -->
+                            <div class="hv-railing">
+                                <div class="hv-rail-bar hv-rail-top"></div>
+                                <div class="hv-rail-bar hv-rail-mid"></div>
+                                <div class="hv-rail-post hvpost1"></div>
+                                <div class="hv-rail-post hvpost2"></div>
+                                <div class="hv-rail-post hvpost3"></div>
+                                <div class="hv-rail-post hvpost4"></div>
+                                <div class="hv-rail-post hvpost5"></div>
+                                <div class="hv-rail-post hvpost6"></div>
+                                <div class="hv-rail-post hvpost7"></div>
+                                <div class="hv-rail-post hvpost8"></div>
+                                <div class="hv-floor"></div>
+                            </div>
                         </div>
-                        <div class="apt-sill"></div>
-                        <div class="apt-shadow"></div>
+                        <!-- Shutters (swing open on scroll) -->
+                        <div class="apt-shutter apt-shutter-l" id="shutterL"></div>
+                        <div class="apt-shutter apt-shutter-r" id="shutterR"></div>
                     </div>
+                    <div class="apt-sill"></div>
+                    <div class="apt-shadow"></div>
                 </div>
-
+                <p class="drag-hint">← drag to explore →</p>
             </div>
         </section>
 

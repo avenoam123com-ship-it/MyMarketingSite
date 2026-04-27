@@ -10,45 +10,76 @@ import { animate, inView } from 'https://cdn.jsdelivr.net/npm/motion@11/+esm';
 import { initLiquidShader }  from './webgl-liquid.js';
 
 /* ═══════════════════════════════════════════════════════════════
-   1. GUEST INTRO — Disappointed guest animation, then site reveal
+   1. HOTEL PARALLAX — First-person balcony view
+   Mousemove: depth parallax on sky/horizon/pool layers.
+   Drag: panoramic pan left/right.
    ═══════════════════════════════════════════════════════════════ */
-export function initGuestIntro() {
-  const scene   = document.getElementById('doorScene');
-  const site    = document.getElementById('mainSite');
-  const figure  = document.getElementById('giFigure');
-  const caption = document.getElementById('giCaption');
-  const floor   = document.querySelector('.gi-floor');
-  if (!scene || !site || !figure) return;
+export function initHotelParallax() {
+  const view    = document.getElementById('hotelView');
+  const sky     = document.getElementById('hvSky');
+  const horizon = document.getElementById('hvHorizon');
+  const pool    = document.getElementById('hvPool');
+  if (!view) return;
 
-  // Phase 1 — figure rises in
-  setTimeout(() => {
-    animate(
-      figure,
-      { opacity: [0, 1], transform: ['translateY(28px)', 'translateY(0px)'] },
-      { duration: 1.0, easing: [0.16, 1, 0.3, 1] }
-    );
-    if (floor) { floor.style.opacity = '1'; }
-  }, 200);
+  let panOffset  = 0;   // committed panorama offset (px)
+  let panTemp    = 0;   // live offset during drag
+  let isDragging = false;
+  let dragStartX = 0;
+  const MAX_PAN  = 50;
 
-  // Phase 2 — guest receives bad news, droops
-  setTimeout(() => { figure.classList.add('drooping'); }, 1700);
+  function applyLayers(mouseX, pan) {
+    if (sky)     animate(sky,     { x: mouseX * 0.025 + pan * 0.3 }, { duration: 0.7, easing: 'ease-out' });
+    if (horizon) animate(horizon, { x: mouseX * 0.06  + pan * 0.65 }, { duration: 0.55, easing: 'ease-out' });
+    if (pool)    animate(pool,    { x: mouseX * 0.14  + pan * 1.1  }, { duration: 0.4, easing: 'ease-out' });
+  }
 
-  // Phase 3 — caption fades in
-  setTimeout(() => {
-    if (caption) animate(
-      caption,
-      { opacity: [0, 1], transform: ['translateY(10px)', 'translateY(0px)'] },
-      { duration: 0.9, easing: [0.16, 1, 0.3, 1] }
-    );
-  }, 2400);
+  // Mouse parallax
+  view.addEventListener('mousemove', e => {
+    if (isDragging) return;
+    const rect = view.getBoundingClientRect();
+    const mx   = e.clientX - rect.left - rect.width / 2;
+    applyLayers(mx, panOffset);
+  });
 
-  // Phase 4 — scene fades out, site reveals
-  setTimeout(() => {
-    animate(scene, { opacity: [1, 0] }, { duration: 1.1, easing: 'ease-in-out' });
-    site.classList.add('site-reveal');
-  }, 4200);
+  view.addEventListener('mouseleave', () => {
+    if (!isDragging) applyLayers(0, panOffset);
+  });
 
-  setTimeout(() => { scene.style.display = 'none'; }, 5400);
+  // Drag to pan
+  view.addEventListener('mousedown', e => {
+    isDragging = true;
+    dragStartX = e.clientX;
+    panTemp    = panOffset;
+    e.preventDefault();
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    panOffset  = panTemp;
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const dx = e.clientX - dragStartX;
+    panTemp  = Math.max(-MAX_PAN, Math.min(MAX_PAN, panOffset + dx * 0.8));
+    applyLayers(0, panTemp);
+  });
+
+  // Touch support
+  let touchStartX = 0;
+  view.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    panTemp = panOffset;
+  }, { passive: true });
+
+  view.addEventListener('touchmove', e => {
+    const dx = e.touches[0].clientX - touchStartX;
+    panTemp  = Math.max(-MAX_PAN, Math.min(MAX_PAN, panOffset + dx * 0.6));
+    applyLayers(0, panTemp);
+  }, { passive: true });
+
+  view.addEventListener('touchend', () => { panOffset = panTemp; });
 }
 
 
@@ -627,7 +658,7 @@ export function initMarketingGlobe() {
    ═══════════════════════════════════════════════════════════════ */
 export function initAll() {
   initLiquidShader();
-  initGuestIntro();
+  initHotelParallax();
   initAuthorityFade();
   initSpringStats();
   initMobileFAB();

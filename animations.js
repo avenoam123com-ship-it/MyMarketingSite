@@ -349,6 +349,87 @@ export function initMagneticCTA() {
 
 
 /* ═══════════════════════════════════════════════════════════════
+   7. HARD TRUTH REVEAL — Gold line sweep + staggered indictment
+   Each row: line draws → number stamps → headline blurs clear → body fades
+   ═══════════════════════════════════════════════════════════════ */
+export function initHardTruthReveal() {
+  document.querySelectorAll('.indictment-row').forEach(row => {
+    const line     = row.querySelector('.row-line');
+    const num      = row.querySelector('.row-num');
+    const headline = row.querySelector('.row-headline');
+    const body     = row.querySelector('.row-body');
+
+    inView(row, () => {
+      // 1. Gold line draws left → right
+      if (line) animate(
+        line,
+        { clipPath: ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'] },
+        { duration: 1.1, easing: [0.16, 1, 0.3, 1] }
+      );
+
+      // 2. Number stamps in
+      if (num) animate(
+        num,
+        { opacity: [0, 1], transform: ['translateY(5px)', 'translateY(0px)'] },
+        { duration: 0.5, delay: 0.18, easing: [0.16, 1, 0.3, 1] }
+      );
+
+      // 3. Headline blurs to clarity
+      if (headline) animate(
+        headline,
+        {
+          opacity:   [0, 1],
+          filter:    ['blur(10px)', 'blur(0px)'],
+          transform: ['translateY(6px)', 'translateY(0px)']
+        },
+        { duration: 0.95, delay: 0.28, easing: [0.16, 1, 0.3, 1] }
+      );
+
+      // 4. Body fades up
+      if (body) animate(
+        body,
+        { opacity: [0, 1], transform: ['translateY(10px)', 'translateY(0px)'] },
+        { duration: 0.7, delay: 0.5, easing: [0.16, 1, 0.3, 1] }
+      );
+
+      return false; // run once
+    }, { margin: '-6% 0px -6% 0px' });
+  });
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   8. HOTEL TILT — Mouse-driven 3D perspective on the hotel card
+   Float animation stays on .hotel-float-wrapper (CSS keyframe).
+   Tilt is applied to .hotel-card via inline transform so they don't fight.
+   ═══════════════════════════════════════════════════════════════ */
+export function initHotelTilt() {
+  const card  = document.getElementById('hotelCard');
+  const stage = card?.closest('.hotel-stage');
+  if (!card || !stage) return;
+
+  const BASE_X =  4;  // resting rotateX (deg)
+  const BASE_Y = -8;  // resting rotateY (deg)
+  const MAX    =  9;  // max additional tilt (deg)
+
+  stage.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const cx   = rect.left + rect.width  / 2;
+    const cy   = rect.top  + rect.height / 2;
+    const rx   = BASE_X + ((e.clientY - cy) / (rect.height / 2)) * -MAX * 0.5;
+    const ry   = BASE_Y + ((e.clientX - cx) / (rect.width  / 2)) *  MAX * 0.7;
+    card.style.transform  = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    card.style.transition = 'transform 0.12s ease-out';
+  });
+
+  stage.addEventListener('mouseleave', () => {
+    card.style.transform  = '';
+    card.style.transition = 'transform 0.7s cubic-bezier(0.16,1,0.3,1)';
+  });
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
    INIT — Entry point, called from index.html
    ═══════════════════════════════════════════════════════════════ */
 export function initAll() {
@@ -359,4 +440,6 @@ export function initAll() {
   initMobileFAB();
   initFogDissolve();
   initMagneticCTA();
+  initHardTruthReveal();
+  initHotelTilt();
 }

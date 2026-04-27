@@ -1122,52 +1122,317 @@ h1, h2, h3, p, span, a, li {
     pointer-events: none;
 }
 
-.hard-truth-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    margin-top: clamp(3rem, 6vw, 5rem);
+/* ── Indictment Layout ─────────────────────────────────── */
+.indictment-layout {
+    display: flex;
+    gap: clamp(2.5rem, 5vw, 5rem);
+    align-items: flex-start;
+    margin-top: clamp(3rem, 5vw, 5rem);
+}
+
+.indictment-list {
+    flex: 0 0 55%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Each row */
+.indictment-row {
+    position: relative;
+    padding: 2rem 0 2rem 0;
+    overflow: hidden;
+}
+
+.row-line {
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), rgba(197,160,89,0.08));
+    clip-path: inset(0 100% 0 0);
+    margin-bottom: 1.2rem;
+}
+
+.row-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+    margin-bottom: 0.75rem;
+}
+
+.row-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    color: var(--gold);
+    letter-spacing: 4px;
+    font-weight: 500;
+    flex-shrink: 0;
+    opacity: 0;
+}
+
+.row-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.25;
+    margin: 0;
+    opacity: 0;
+    filter: blur(10px);
+}
+
+.row-body {
+    font-size: clamp(0.85rem, 1.1vw, 0.93rem);
+    color: var(--ink-mute);
+    line-height: 1.8;
+    margin: 0;
+    padding-left: 2.4rem;
+    font-weight: 300;
+    opacity: 0;
+}
+
+.row-watermark {
+    position: absolute;
+    right: -0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 9vw, 9rem);
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+}
+
+/* ── 3D Hotel ──────────────────────────────────────────── */
+.hotel-stage {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    perspective: 900px;
+}
+
+.hotel-float-wrapper {
+    animation: hotelFloat 8s ease-in-out infinite;
+}
+
+@keyframes hotelFloat {
+    0%, 100% { transform: translateY(0px);   }
+    50%       { transform: translateY(-14px); }
+}
+
+.hotel-card {
+    width: 260px;
+    height: 310px;
+    background: var(--onyx-deep);
+    border: 1px solid rgba(197,160,89,0.22);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transform: rotateX(4deg) rotateY(-8deg);
+    transition: transform 0.15s ease-out;
+    will-change: transform;
+    cursor: default;
+}
+
+/* ── Room elements ── */
+.hotel-back-wall {
+    position: absolute;
+    inset: 0;
+    bottom: 85px;
+    background: linear-gradient(180deg, #0c0906 0%, #110e09 100%);
+}
+
+.hotel-window {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 145px;
+    height: 100px;
+    border: 1px solid rgba(197,160,89,0.18);
+    overflow: hidden;
+}
+
+.hotel-sky {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        #050810 0%,
+        #080d1a 50%,
+        #0d1020 100%
+    );
+}
+
+.hotel-city {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 52px;
+    background: #08060380;
+    clip-path: polygon(
+        0% 100%, 0% 68%, 4% 68%, 4% 48%, 8% 48%, 8% 62%,
+        12% 62%, 12% 30%, 17% 30%, 17% 55%, 21% 55%, 21% 42%,
+        26% 42%, 26% 25%, 31% 25%, 31% 48%, 36% 48%, 36% 38%,
+        41% 38%, 41% 22%, 46% 22%, 46% 40%, 51% 40%, 51% 52%,
+        56% 52%, 56% 30%, 61% 30%, 61% 42%, 66% 42%, 66% 58%,
+        71% 58%, 71% 38%, 76% 38%, 76% 55%, 81% 55%, 81% 44%,
+        86% 44%, 86% 62%, 91% 62%, 91% 50%, 95% 50%, 95% 68%,
+        100% 68%, 100% 100%
+    );
+}
+
+.hotel-horizon-glow {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 8px;
+    background: radial-gradient(ellipse, rgba(197,155,70,0.22) 0%, transparent 75%);
+    filter: blur(2px);
+}
+
+.hotel-lamp-glow {
+    position: absolute;
+    top: 80px;
+    right: 18px;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle,
+        rgba(220,175,80,0.38) 0%,
+        rgba(197,140,50,0.14) 45%,
+        transparent 72%
+    );
+    filter: blur(3px);
+    animation: lampPulse 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hotel-lamp-base {
+    position: absolute;
+    top: 118px;
+    right: 26px;
+    width: 16px;
+    height: 14px;
+    background: linear-gradient(180deg, #1e1812, #100c08);
+    border: 1px solid rgba(197,160,89,0.18);
+}
+
+@keyframes lampPulse {
+    0%, 100% { opacity: 0.75; }
+    50%       { opacity: 1.0;  }
+}
+
+.hotel-floor {
+    position: absolute;
+    bottom: 55px; left: 0; right: 0;
+    height: 50px;
+    background: linear-gradient(180deg, #0d0b07 0%, #080605 100%);
+    border-top: 1px solid rgba(197,160,89,0.07);
+}
+
+.hotel-floor::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent 0px, transparent 9px,
+        rgba(197,160,89,0.025) 9px, rgba(197,160,89,0.025) 10px
+    );
+}
+
+.hotel-bed {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 178px;
+}
+
+.hotel-bed-linen {
+    display: flex;
+    gap: 7px;
+    align-items: flex-end;
+    padding: 6px 10px 4px;
+    background: linear-gradient(180deg, #28201a, #1c1610);
+    border: 1px solid rgba(197,160,89,0.1);
+    border-bottom: none;
+}
+
+.hotel-pillow {
+    flex: 1;
+    height: 13px;
+    background: linear-gradient(180deg, #38302a, #2a2218);
+    border-radius: 1px;
+    border: 1px solid rgba(197,160,89,0.08);
+}
+
+.hotel-bed-base {
+    height: 22px;
+    background: linear-gradient(180deg, #1c1510, #110e09);
     border: 1px solid rgba(197,160,89,0.12);
 }
 
-.truth-card {
-    padding: clamp(2rem, 4vw, 3rem);
-    background: var(--onyx);
-    border: 1px solid rgba(197,160,89,0.08);
-    transition: border-color 0.3s ease, background 0.3s ease;
+/* Corner gold accents */
+.hotel-corner {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    border-style: solid;
+    border-color: rgba(197,160,89,0.45);
+    border-width: 0;
+}
+.hotel-corner.tl { top: 7px; left: 7px;   border-top-width: 1px; border-left-width: 1px;  }
+.hotel-corner.tr { top: 7px; right: 7px;  border-top-width: 1px; border-right-width: 1px; }
+.hotel-corner.bl { bottom: 57px; left: 7px;  border-bottom-width: 1px; border-left-width: 1px;  }
+.hotel-corner.br { bottom: 57px; right: 7px; border-bottom-width: 1px; border-right-width: 1px; }
+
+.hotel-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        130deg,
+        rgba(255,255,255,0.035) 0%,
+        transparent 55%,
+        rgba(197,160,89,0.02) 100%
+    );
+    pointer-events: none;
 }
 
-.truth-card:hover {
-    background: var(--onyx-soft);
-    border-color: rgba(197,160,89,0.22);
+.hotel-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(197,160,89,0.12);
+    background: rgba(8,6,4,0.85);
 }
 
-.truth-icon {
+.hotel-caption span {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 300;
-    color: var(--gold-dim);
-    line-height: 1;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.02em;
+    font-size: 0.68rem;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.65;
 }
 
-.truth-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    font-weight: 500;
-    color: var(--ink);
-    margin-bottom: 0.9rem;
-    line-height: 1.3;
+.hotel-shadow {
+    width: 180px;
+    height: 18px;
+    margin-top: 10px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.55) 0%, transparent 72%);
+    filter: blur(6px);
 }
 
-.truth-card p {
-    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
-    color: var(--ink-mute);
-    line-height: 1.75;
-    font-weight: 300;
-}
-
+/* ── truth-close ── */
 .truth-close {
     margin-top: clamp(3rem, 6vw, 5rem);
     text-align: center;
@@ -1178,10 +1443,22 @@ h1, h2, h3, p, span, a, li {
     display: inline-block;
 }
 
-@media (max-width: 768px) {
-    .hard-truth-grid {
-        grid-template-columns: 1fr;
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    .indictment-layout {
+        flex-direction: column-reverse;
     }
+    .hotel-stage {
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hotel-card { width: 220px; height: 265px; }
+    .hotel-window { width: 120px; height: 84px; }
 }
 
 /* =========================================================

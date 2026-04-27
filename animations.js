@@ -7,6 +7,7 @@
  */
 
 import { animate, inView } from 'https://cdn.jsdelivr.net/npm/motion@11/+esm';
+import { initLiquidShader }  from './webgl-liquid.js';
 
 /* ═══════════════════════════════════════════════════════════════
    1. DOOR ENTRY — 3D Parallax + Perspective depth enhancement
@@ -351,6 +352,7 @@ export function initMagneticCTA() {
    INIT — Entry point, called from index.html
    ═══════════════════════════════════════════════════════════════ */
 export function initAll() {
+  initLiquidShader();
   initDoorEntry();
   initAuthorityFade();
   initSpringStats();

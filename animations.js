@@ -10,64 +10,45 @@ import { animate, inView } from 'https://cdn.jsdelivr.net/npm/motion@11/+esm';
 import { initLiquidShader }  from './webgl-liquid.js';
 
 /* ═══════════════════════════════════════════════════════════════
-   1. DOOR ENTRY — 3D Parallax + Perspective depth enhancement
+   1. GUEST INTRO — Disappointed guest animation, then site reveal
    ═══════════════════════════════════════════════════════════════ */
-export function initDoorEntry() {
-  const doorScene  = document.getElementById('doorScene');
-  const mainSite   = document.getElementById('mainSite');
-  const suiteMedia = document.querySelector('.suite-media');
+export function initGuestIntro() {
+  const scene   = document.getElementById('doorScene');
+  const site    = document.getElementById('mainSite');
+  const figure  = document.getElementById('giFigure');
+  const caption = document.getElementById('giCaption');
+  const floor   = document.querySelector('.gi-floor');
+  if (!scene || !site || !figure) return;
 
-  if (!doorScene || !mainSite || !suiteMedia) return;
-
-  // Suite starts zoomed IN (creates "far away" feeling)
-  // As door swings, it zooms OUT to natural size → feels like stepping inside
-  Object.assign(suiteMedia.style, {
-    transform: 'scale(1.22)',
-    opacity:   '0',
-  });
-
+  // Phase 1 — figure rises in
   setTimeout(() => {
-    // Phase 1 — slow approach toward door
-    doorScene.classList.add('door-zoom-in');
+    animate(
+      figure,
+      { opacity: [0, 1], transform: ['translateY(28px)', 'translateY(0px)'] },
+      { duration: 1.0, easing: [0.16, 1, 0.3, 1] }
+    );
+    if (floor) { floor.style.opacity = '1'; }
+  }, 200);
 
-    // Phase 2 — door swings + parallax pull simultaneously
-    setTimeout(() => {
-      doorScene.classList.add('door-open');
+  // Phase 2 — guest receives bad news, droops
+  setTimeout(() => { figure.classList.add('drooping'); }, 1700);
 
-      // Suite parallax: zoom out as we "enter" — the psychological
-      // sense of expansive space revealing itself
-      animate(
-        suiteMedia,
-        { transform: ['scale(1.22)', 'scale(1.0)'], opacity: [0, 1] },
-        { duration: 2.6, easing: [0.16, 1, 0.3, 1] }
-      );
+  // Phase 3 — caption fades in
+  setTimeout(() => {
+    if (caption) animate(
+      caption,
+      { opacity: [0, 1], transform: ['translateY(10px)', 'translateY(0px)'] },
+      { duration: 0.9, easing: [0.16, 1, 0.3, 1] }
+    );
+  }, 2400);
 
-      // Subtle perspective drift on the door scene container —
-      // slight Y rotation gives sense of "crossing the threshold"
-      animate(
-        doorScene,
-        { perspective: ['1400px', '900px'] },
-        { duration: 2.4, easing: 'ease-out' }
-      );
-    }, 1400);
+  // Phase 4 — scene fades out, site reveals
+  setTimeout(() => {
+    animate(scene, { opacity: [1, 0] }, { duration: 1.1, easing: 'ease-in-out' });
+    site.classList.add('site-reveal');
+  }, 4200);
 
-    // Phase 3 — camera push through
-    setTimeout(() => {
-      doorScene.classList.add('push-forward');
-      mainSite.classList.add('site-reveal');
-
-      // Quick scale overshoot on entry: gives the "pushed through" sensation
-      animate(
-        doorScene,
-        { scale: [1, 1.06, 1] },
-        { duration: 1.6, easing: [0.34, 1.56, 0.64, 1] }
-      );
-    }, 3600);
-
-    // Phase 4 — clean up
-    setTimeout(() => { doorScene.style.display = 'none'; }, 5400);
-
-  }, 250);
+  setTimeout(() => { scene.style.display = 'none'; }, 5400);
 }
 
 
@@ -430,7 +411,35 @@ export function initHotelTilt() {
 
 
 /* ═══════════════════════════════════════════════════════════════
-   9. MARKETING GLOBE — Rotating wireframe globe with orbiting
+   9. WINDOW OPEN — Shutters swing open on scroll-into-view,
+   revealing the warm apartment interior behind.
+   ═══════════════════════════════════════════════════════════════ */
+export function initWindowOpen() {
+  const win      = document.getElementById('aptWindow');
+  const shutterL = document.getElementById('shutterL');
+  const shutterR = document.getElementById('shutterR');
+  if (!win || !shutterL || !shutterR) return;
+
+  inView(win, () => {
+    // Left shutter swings open (hinge on left edge)
+    animate(
+      shutterL,
+      { transform: ['rotateY(0deg)', 'rotateY(-100deg)'] },
+      { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.15 }
+    );
+    // Right shutter swings open (hinge on right edge)
+    animate(
+      shutterR,
+      { transform: ['rotateY(0deg)', 'rotateY(100deg)'] },
+      { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.3 }
+    );
+    return false; // run once
+  }, { margin: '-12% 0px -12% 0px' });
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   10. MARKETING GLOBE — Rotating wireframe globe with orbiting
    satellite, pulsing nodes, and data-arc connections.
    Communicates "global digital marketing" in the hero.
    ═══════════════════════════════════════════════════════════════ */
@@ -618,7 +627,7 @@ export function initMarketingGlobe() {
    ═══════════════════════════════════════════════════════════════ */
 export function initAll() {
   initLiquidShader();
-  initDoorEntry();
+  initGuestIntro();
   initAuthorityFade();
   initSpringStats();
   initMobileFAB();
@@ -626,5 +635,6 @@ export function initAll() {
   initMagneticCTA();
   initHardTruthReveal();
   initHotelTilt();
+  initWindowOpen();
   initMarketingGlobe();
 }

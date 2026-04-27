@@ -55,308 +55,497 @@ h1, h2, h3, p, span, a, li {
 }
 
 /* =========================================================
-   CINEMATIC DOOR + LUXURY SUITE REVEAL
+   GUEST INTRO SCENE
    ========================================================= */
-.cinematic-door-scene {
+.guest-intro {
     position: fixed;
     inset: 0;
     z-index: 9999;
+    background: var(--onyx-deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    perspective: 1400px;
-    perspective-origin: center 55%;
-    background: #000;
-    transition: opacity 1.4s ease-out, transform 1.6s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
 }
 
-/* The luxury suite revealed behind the door */
-.luxury-suite-reveal {
+/* Background glow */
+.gi-bg {
     position: absolute;
     inset: 0;
-    overflow: hidden;
-    transform-style: preserve-3d;
-}
-
-.suite-media {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse at 50% 35%, #2a1d10 0%, #14100a 55%, #060403 100%);
-    opacity: 0;
-    transition: opacity 1.6s ease-out;
-}
-
-.cinematic-door-scene.door-open .suite-media { opacity: 1; }
-
-/* Window with city night view */
-.suite-night-window {
-    position: absolute;
-    top: 12%;
-    right: 8%;
-    width: 28%;
-    height: 38%;
-    background:
-        radial-gradient(ellipse at 30% 80%, rgba(255, 200, 120, 0.5) 0%, transparent 25%),
-        radial-gradient(circle at 60% 40%, rgba(180, 220, 255, 0.25) 0%, transparent 30%),
-        linear-gradient(180deg, #0d1828 0%, #1a2a44 50%, #2a3a5a 100%);
-    border: 6px solid rgba(40, 28, 18, 0.95);
-    border-radius: 4px;
-    box-shadow:
-        0 0 60px rgba(229, 192, 120, 0.18),
-        inset 0 0 40px rgba(0, 0, 0, 0.6);
-}
-
-.suite-night-window::before {
-    /* simulated city lights */
-    content: '';
-    position: absolute;
-    inset: 8px;
-    background:
-        radial-gradient(circle at 15% 70%, rgba(255, 220, 150, 0.9) 0%, transparent 1.5%),
-        radial-gradient(circle at 28% 60%, rgba(255, 200, 130, 0.7) 0%, transparent 1.2%),
-        radial-gradient(circle at 42% 80%, rgba(255, 230, 170, 0.85) 0%, transparent 1.4%),
-        radial-gradient(circle at 60% 65%, rgba(255, 210, 140, 0.6) 0%, transparent 1%),
-        radial-gradient(circle at 75% 75%, rgba(255, 220, 150, 0.8) 0%, transparent 1.3%),
-        radial-gradient(circle at 88% 68%, rgba(255, 200, 130, 0.7) 0%, transparent 1.2%);
-    animation: cityFlicker 6s ease-in-out infinite;
-}
-
-@keyframes cityFlicker {
-    0%, 100% { opacity: 0.85; }
-    50% { opacity: 1; }
-}
-
-/* Fireplace warm glow on the left */
-.suite-fireplace-glow {
-    position: absolute;
-    top: 30%;
-    left: 0;
-    width: 35%;
-    height: 50%;
-    background:
-        radial-gradient(ellipse at 20% 60%, rgba(255, 130, 60, 0.35) 0%, rgba(229, 100, 40, 0.15) 30%, transparent 65%);
-    filter: blur(12px);
-    animation: fireBreathe 4s ease-in-out infinite;
-}
-
-@keyframes fireBreathe {
-    0%, 100% { opacity: 0.85; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.04); }
-}
-
-/* Overall warm ambient layer */
-.suite-ambient {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse at 50% 60%, rgba(229, 192, 120, 0.18) 0%, transparent 55%),
-        radial-gradient(ellipse at 50% 100%, rgba(40, 25, 15, 0.7) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 50% 65%, rgba(197, 160, 89, 0.07) 0%, transparent 60%);
     pointer-events: none;
 }
 
-/* Wooden / stone floor with gentle reflection */
-.suite-floor-luxury {
+/* ── Floating bad notifications ── */
+.gi-notif {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 30%;
-    background:
-        linear-gradient(180deg, transparent 0%, rgba(20, 12, 6, 0.85) 60%, rgba(8, 5, 3, 1) 100%),
-        repeating-linear-gradient(90deg,
-            rgba(80, 55, 30, 0.18) 0px,
-            rgba(50, 35, 20, 0.22) 60px,
-            rgba(80, 55, 30, 0.18) 120px);
-    transform: rotateX(72deg) translateZ(-100px);
-    transform-origin: top center;
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+    color: rgba(237, 234, 226, 0.55);
+    background: rgba(18, 14, 10, 0.9);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    padding: 0.38rem 0.85rem;
+    border-radius: 2px;
+    opacity: 0;
+    pointer-events: none;
+    font-weight: 400;
+    white-space: nowrap;
 }
 
-/* Steaming Jacuzzi — hero element */
-.jacuzzi {
+@keyframes gi-float-up {
+    0%   { opacity: 0; transform: translateY(0px); }
+    18%  { opacity: 1; }
+    75%  { opacity: 0.7; }
+    100% { opacity: 0; transform: translateY(-55px); }
+}
+
+.gi-n1 { top: 24%; right: calc(50% - 80px); animation: gi-float-up 3s ease-out 1.1s both; }
+.gi-n2 { top: 32%; right: calc(50% - 120px); animation: gi-float-up 3s ease-out 1.6s both; }
+.gi-n3 { top: 20%; right: calc(50% - 40px);  animation: gi-float-up 3s ease-out 2.0s both; }
+
+/* ── Guest figure ── */
+.gi-figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(28px);
+    position: relative;
+    z-index: 2;
+}
+
+.gi-head {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, rgba(237, 234, 226, 0.82) 0%, rgba(180, 148, 90, 0.65) 100%);
+    position: relative;
+    flex-shrink: 0;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+}
+
+.gi-eye {
+    position: absolute;
+    top: 38%;
+    width: 6px;
+    height: 6px;
+    background: var(--onyx-deep);
+    border-radius: 50%;
+}
+.gi-eye-l { left: 25%; }
+.gi-eye-r { right: 25%; }
+
+.gi-frown {
     position: absolute;
     bottom: 18%;
     left: 50%;
     transform: translateX(-50%);
-    width: 360px;
-    height: 110px;
-    perspective: 600px;
-}
-
-.jacuzzi-rim {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse at center, transparent 60%, rgba(60, 40, 22, 0.95) 65%, rgba(30, 20, 10, 1) 100%);
-    border-radius: 50%;
-    box-shadow:
-        0 30px 80px rgba(0, 0, 0, 0.85),
-        inset 0 -8px 20px rgba(0, 0, 0, 0.6);
-}
-
-.jacuzzi-water {
-    position: absolute;
-    inset: 8px 18px;
-    background:
-        radial-gradient(ellipse at 40% 40%, rgba(80, 130, 160, 0.7) 0%, rgba(40, 70, 95, 0.85) 60%, rgba(20, 35, 50, 0.95) 100%);
-    border-radius: 50%;
-    box-shadow:
-        inset 0 0 40px rgba(255, 220, 170, 0.25),
-        inset 0 6px 14px rgba(255, 255, 255, 0.18);
-}
-
-.jacuzzi-shimmer {
-    position: absolute;
-    inset: 12px 24px;
-    background:
-        radial-gradient(ellipse at 30% 35%, rgba(255, 240, 200, 0.45) 0%, transparent 18%),
-        radial-gradient(ellipse at 65% 50%, rgba(255, 220, 170, 0.35) 0%, transparent 14%),
-        radial-gradient(ellipse at 50% 65%, rgba(255, 230, 180, 0.3) 0%, transparent 12%);
-    border-radius: 50%;
-    mix-blend-mode: screen;
-    animation: waterShimmer 5s ease-in-out infinite;
-}
-
-@keyframes waterShimmer {
-    0%, 100% { opacity: 0.7; transform: translateX(0); }
-    50% { opacity: 1; transform: translateX(8px); }
-}
-
-/* Steam wisps rising from the jacuzzi */
-.steam {
-    position: absolute;
-    bottom: 50%;
-    width: 60px;
-    height: 60px;
-    background: radial-gradient(circle, rgba(255, 240, 220, 0.55) 0%, rgba(255, 240, 220, 0.15) 40%, transparent 70%);
-    border-radius: 50%;
-    filter: blur(14px);
+    width: 16px;
+    height: 7px;
+    border: 2px solid rgba(15, 12, 8, 0.8);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
     opacity: 0;
-    animation: steamRise 6s ease-in infinite;
+    transition: opacity 0.6s ease 0.2s;
 }
 
-.steam-1 { left: 22%; animation-delay: 0s; }
-.steam-2 { left: 42%; animation-delay: 1.5s; width: 80px; height: 80px; }
-.steam-3 { left: 60%; animation-delay: 3s; }
-.steam-4 { left: 75%; animation-delay: 4.5s; width: 70px; height: 70px; }
-
-@keyframes steamRise {
-    0%   { opacity: 0; transform: translateY(0) scale(0.6); }
-    25%  { opacity: 0.7; }
-    100% { opacity: 0; transform: translateY(-280px) scale(1.6); }
+.gi-neck {
+    width: 11px;
+    height: 14px;
+    background: rgba(237, 234, 226, 0.5);
+    flex-shrink: 0;
 }
 
-/* The 3D Door */
-.door-3d-container {
+.gi-upper {
+    display: flex;
+    align-items: flex-start;
+    transform-origin: center top;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s;
+}
+
+.gi-torso {
+    width: 60px;
+    height: 72px;
+    background: linear-gradient(180deg, rgba(237, 234, 226, 0.68) 0%, rgba(180, 148, 90, 0.4) 100%);
+    border-radius: 4px 4px 7px 7px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 22px rgba(0,0,0,0.35);
+}
+
+.gi-arm {
+    width: 13px;
+    height: 58px;
+    background: rgba(237, 234, 226, 0.5);
+    border-radius: 6px;
+    transform-origin: top center;
+    transition: transform 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gi-arm-l {
+    transform: rotate(14deg);
+    margin-top: 8px;
+    transition-delay: 0.05s;
+}
+
+.gi-arm-r {
+    transform: rotate(-10deg);
+    margin-top: 8px;
+    position: relative;
+    transition-delay: 0.1s;
+}
+
+.gi-phone {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 380px;
-    height: 580px;
-    transform-style: preserve-3d;
-    transition: transform 1.6s cubic-bezier(0.7, 0, 0.3, 1);
-    will-change: transform;
+    bottom: -10px;
+    right: -6px;
+    width: 26px;
+    height: 42px;
+    background: var(--onyx);
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 14px rgba(197, 160, 89, 0.12);
 }
 
-.door-panel {
+.gi-phone-screen {
+    width: 18px;
+    height: 30px;
+    background: rgba(197, 160, 89, 0.06);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gi-screen-x {
+    width: 10px;
+    height: 10px;
+    position: relative;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.4s;
+}
+.gi-screen-x::before,
+.gi-screen-x::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0;
+    width: 100%; height: 1.5px;
+    background: rgba(220, 80, 80, 0.9);
+    border-radius: 1px;
+}
+.gi-screen-x::before { transform: translateY(-50%) rotate(45deg); }
+.gi-screen-x::after  { transform: translateY(-50%) rotate(-45deg); }
+
+.gi-legs {
+    display: flex;
+    gap: 8px;
+    margin-top: 3px;
+}
+
+.gi-leg {
+    width: 15px;
+    height: 64px;
+    background: rgba(237, 234, 226, 0.45);
+    border-radius: 4px 4px 7px 7px;
+}
+.gi-leg-l { transform: rotate(-3deg); }
+.gi-leg-r { transform: rotate(3deg); }
+
+/* ── Droop state ── */
+.gi-figure.drooping .gi-upper    { transform: rotate(4deg) translateY(3px); }
+.gi-figure.drooping .gi-arm-l    { transform: rotate(28deg); }
+.gi-figure.drooping .gi-arm-r    { transform: rotate(-28deg); }
+.gi-figure.drooping .gi-frown    { opacity: 1; }
+.gi-figure.drooping .gi-screen-x { opacity: 1; }
+
+/* ── Floor line ── */
+.gi-floor {
+    width: min(320px, 78vw);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(197, 160, 89, 0.22), transparent);
+    margin-top: 1px;
+    opacity: 0;
+    transition: opacity 0.8s ease 0.5s;
+}
+
+/* ── Caption ── */
+.gi-caption {
+    position: absolute;
+    bottom: 11%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+.gi-line1 {
+    font-size: clamp(0.82rem, 1.8vw, 1rem);
+    color: var(--ink-mute);
+    letter-spacing: 0.5px;
+    margin-bottom: 0.55rem;
+    font-weight: 300;
+}
+
+.gi-line2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: -0.2px;
+}
+
+/* =========================================================
+   AI SUITE — 2-column layout + opening window
+   ========================================================= */
+.ai-suite {
+    padding: var(--section-gap) 0;
+    background: var(--onyx-soft);
+    position: relative;
+}
+
+.ai-suite-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5rem;
+}
+
+.ai-text .section-lede { margin-bottom: 0; }
+
+/* ── Window stage ── */
+.window-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.apt-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Frame */
+.apt-frame {
+    width: 290px;
+    height: 350px;
+    position: relative;
+    border: 2px solid rgba(197, 160, 89, 0.38);
+    background: var(--onyx-deep);
+    perspective: 700px;
+    perspective-origin: center;
+    overflow: hidden;
+    box-shadow:
+        0 0 50px rgba(197, 160, 89, 0.09),
+        0 30px 60px rgba(0,0,0,0.5);
+}
+
+/* Inner frame trim */
+.apt-frame::before {
+    content: '';
+    position: absolute;
+    inset: 7px;
+    border: 1px solid rgba(197, 160, 89, 0.14);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ── Apartment interior ── */
+.apt-interior {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #3a2515 0%, #1f1208 50%, #2a1810 100%);
-    border: 3px solid var(--gold-dim);
-    box-shadow:
-        inset 0 0 60px rgba(197, 160, 89, 0.12),
-        0 0 80px rgba(0, 0, 0, 0.85),
-        0 20px 60px rgba(0, 0, 0, 0.6);
-    transform-origin: right center;
-    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 2s ease;
-    transform-style: preserve-3d;
-    backface-visibility: visible;
+    z-index: 1;
     overflow: hidden;
 }
 
-.door-wood-texture {
+/* Night sky */
+.apt-sky {
     position: absolute;
-    inset: 0;
-    background:
-        repeating-linear-gradient(90deg,
-            transparent 0px,
-            rgba(20, 10, 5, 0.4) 2px,
-            transparent 4px,
-            rgba(60, 35, 20, 0.3) 8px,
-            transparent 12px,
-            rgba(30, 18, 10, 0.4) 16px,
-            transparent 20px),
-        radial-gradient(ellipse at 30% 40%, rgba(90, 55, 30, 0.3) 0%, transparent 40%),
-        radial-gradient(ellipse at 70% 60%, rgba(90, 55, 30, 0.3) 0%, transparent 40%);
-    pointer-events: none;
-    transition: filter 1.5s ease;
+    top: 0; left: 0; right: 0;
+    height: 56%;
+    background: linear-gradient(180deg, #05091a 0%, #091220 45%, #0f1628 100%);
 }
 
-.door-ornate-frame {
-    position: absolute;
-    inset: 22px;
-    border: 1px solid rgba(197, 160, 89, 0.45);
-    pointer-events: none;
-}
-.door-ornate-frame::before {
+/* City skyline silhouette */
+.apt-sky::before {
     content: '';
     position: absolute;
-    inset: 14px;
-    border: 1px solid rgba(197, 160, 89, 0.25);
+    bottom: 0; left: 0; right: 0;
+    height: 50%;
+    background: rgba(4, 4, 8, 0.88);
+    clip-path: polygon(
+        0% 100%, 0% 60%,
+        5% 60%, 5% 38%, 10% 38%, 10% 52%,
+        16% 52%, 16% 28%, 23% 28%, 23% 44%,
+        29% 44%, 29% 20%, 35% 20%, 35% 40%,
+        41% 40%, 41% 30%, 48% 30%, 48% 46%,
+        54% 46%, 54% 26%, 60% 26%, 60% 42%,
+        66% 42%, 66% 55%, 72% 55%, 72% 35%,
+        78% 35%, 78% 50%, 85% 50%, 85% 38%,
+        91% 38%, 91% 58%, 97% 58%, 97% 62%,
+        100% 62%, 100% 100%
+    );
 }
 
-.door-inner {
+/* Horizon warm glow */
+.apt-sky::after {
+    content: '';
     position: absolute;
-    inset: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-    pointer-events: none;
+    bottom: 0; left: 0; right: 0;
+    height: 20px;
+    background: radial-gradient(ellipse at 50% 100%, rgba(197, 140, 60, 0.2) 0%, transparent 70%);
+    filter: blur(3px);
 }
 
-.door-detail-top, .door-detail-middle, .door-detail-bottom {
-    flex: 1;
-    background: linear-gradient(135deg, rgba(197, 160, 89, 0.06) 0%, rgba(42, 31, 18, 0.5) 50%, rgba(197, 160, 89, 0.06) 100%);
-    border: 1px solid rgba(197, 160, 89, 0.2);
-    border-radius: 4px;
-    box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.55);
-}
-
-.door-handle-luxury {
+/* Warm room glow (lower half) */
+.apt-room-glow {
     position: absolute;
-    left: 26px;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: 0; left: 0; right: 0;
+    height: 58%;
+    background: radial-gradient(ellipse at 50% 100%, rgba(210, 145, 65, 0.28) 0%, rgba(10, 7, 4, 0.94) 65%);
+}
+
+/* Lamp glow */
+.apt-lamp-glow {
+    position: absolute;
+    top: 42%;
+    right: 18%;
+    width: 55px;
+    height: 55px;
+    background: radial-gradient(circle, rgba(220, 165, 75, 0.45) 0%, transparent 70%);
+    filter: blur(7px);
+    animation: apt-lamp 4s ease-in-out infinite;
+}
+
+@keyframes apt-lamp {
+    0%, 100% { opacity: 0.75; }
+    50%       { opacity: 1; }
+}
+
+/* Curtains visible at the sides */
+.apt-curtain {
+    position: absolute;
+    top: 0; bottom: 0;
     width: 24px;
-    height: 80px;
-    background: radial-gradient(ellipse at 30% 30%, var(--gold-bright) 0%, var(--gold) 50%, var(--gold-dim) 100%);
-    border-radius: 12px;
-    box-shadow:
-        0 0 20px rgba(229, 192, 120, 0.5),
-        0 4px 12px rgba(0, 0, 0, 0.5),
-        inset 0 0 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, rgba(55, 36, 16, 0.75), rgba(45, 30, 13, 0.25));
+    z-index: 2;
+}
+.apt-curtain-l { left: 0; }
+.apt-curtain-r { right: 0; transform: scaleX(-1); }
+
+/* Bottom label */
+.apt-label {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 46px;
+    background: rgba(6, 5, 3, 0.9);
+    border-top: 1px solid rgba(197, 160, 89, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
 }
 
-/* Cinematic motion */
-.cinematic-door-scene.door-zoom-in .door-3d-container {
-    transform: translate(-50%, -50%) scale(1.12) translateZ(80px);
+.apt-label span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.66rem;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.7;
 }
 
-.cinematic-door-scene.door-open .door-panel {
-    transform: rotateY(118deg) translateZ(-30px);
-    box-shadow:
-        inset 0 0 80px rgba(0, 0, 0, 0.8),
-        inset 60px 0 100px rgba(229, 192, 120, 0.18),
-        40px 30px 120px rgba(0, 0, 0, 0.9);
+/* ── Shutters ── */
+.apt-shutter {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(155deg, #2b1e0f 0%, #1a1208 50%, #231509 100%);
+    z-index: 4;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
-.cinematic-door-scene.door-open .door-wood-texture {
-    filter: brightness(0.55) sepia(0.25);
+.apt-shutter-l {
+    left: 0;
+    transform-origin: left center;
+    border-right: 1px solid rgba(197, 160, 89, 0.18);
 }
 
-.cinematic-door-scene.push-forward {
-    transform: translateZ(900px) scale(3.2);
-    opacity: 0;
+.apt-shutter-r {
+    right: 0;
+    transform-origin: right center;
+    border-left: 1px solid rgba(197, 160, 89, 0.18);
+}
+
+/* Shutter horizontal slat lines */
+.apt-shutter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent 0px, transparent 32px,
+        rgba(255,255,255,0.025) 32px, rgba(255,255,255,0.025) 33px
+    );
+}
+
+/* Handle knob */
+.apt-shutter-l::after {
+    content: '';
+    position: absolute;
+    top: 50%; right: 10px;
+    transform: translateY(-50%);
+    width: 7px; height: 26px;
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(197, 160, 89, 0.25);
+}
+.apt-shutter-r::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 10px;
+    transform: translateY(-50%);
+    width: 7px; height: 26px;
+    background: linear-gradient(180deg, var(--gold-bright), var(--gold));
+    border-radius: 3px;
+    box-shadow: 0 0 8px rgba(197, 160, 89, 0.25);
+}
+
+/* Window sill */
+.apt-sill {
+    width: 318px;
+    height: 15px;
+    background: linear-gradient(180deg, rgba(45, 30, 14, 0.95) 0%, rgba(22, 15, 7, 0.85) 100%);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-top: none;
+}
+
+.apt-shadow {
+    width: 240px;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.45) 0%, transparent 70%);
+    filter: blur(7px);
+    margin-top: 3px;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+    .ai-suite-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .window-stage { order: -1; }
+}
+
+@media (max-width: 480px) {
+    .apt-frame  { width: 250px; height: 300px; }
+    .apt-sill   { width: 272px; }
 }
 
 /* Main site reveal */
@@ -1334,8 +1523,6 @@ h1, h2, h3, p, span, a, li {
 }
 
 @media (max-width: 600px) {
-    .door-3d-container { width: 280px; height: 420px; }
-    .jacuzzi { width: 240px; height: 80px; }
     .hero-actions {
         display: flex;
         flex-direction: column;
@@ -1352,11 +1539,8 @@ h1, h2, h3, p, span, a, li {
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-    .steam, .jacuzzi-shimmer, .suite-fireplace-glow, .scroll-line {
-        animation: none;
-    }
-    .cinematic-door-scene { transition: opacity 0.6s ease-out; }
-    .door-panel { transition: transform 0.8s ease; }
+    .scroll-line, .apt-lamp-glow, .apt-lamp { animation: none; }
+    .gi-notif { animation: none; opacity: 0.6; }
 }
 
 

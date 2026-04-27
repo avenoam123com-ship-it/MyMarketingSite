@@ -11,43 +11,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Cinematic 3D Door — opens inward into a luxury suite -->
-    <div class="cinematic-door-scene" id="doorScene">
-        <!--
-            Luxury suite revealed behind the door.
-            To swap in a real photo/video: replace .suite-media with
-            <img src="suite.jpg"> or <video src="suite.mp4" autoplay muted loop>
-        -->
-        <div class="luxury-suite-reveal">
-            <div class="suite-media">
-                <div class="suite-night-window"></div>
-                <div class="suite-fireplace-glow"></div>
-                <div class="suite-ambient"></div>
-                <div class="jacuzzi">
-                    <div class="jacuzzi-rim"></div>
-                    <div class="jacuzzi-water"></div>
-                    <div class="jacuzzi-shimmer"></div>
-                    <div class="steam steam-1"></div>
-                    <div class="steam steam-2"></div>
-                    <div class="steam steam-3"></div>
-                    <div class="steam steam-4"></div>
+    <!-- Disappointed Guest Intro Scene -->
+    <div class="guest-intro" id="doorScene">
+        <div class="gi-bg"></div>
+
+        <!-- Floating bad notifications -->
+        <div class="gi-notif gi-n1">Platform fee: 19%</div>
+        <div class="gi-notif gi-n2">No guest data available</div>
+        <div class="gi-notif gi-n3">Algorithm changed</div>
+
+        <!-- The guest figure -->
+        <div class="gi-figure" id="giFigure">
+            <div class="gi-head">
+                <div class="gi-eye gi-eye-l"></div>
+                <div class="gi-eye gi-eye-r"></div>
+                <div class="gi-frown"></div>
+            </div>
+            <div class="gi-neck"></div>
+            <div class="gi-upper">
+                <div class="gi-arm gi-arm-l"></div>
+                <div class="gi-torso"></div>
+                <div class="gi-arm gi-arm-r">
+                    <div class="gi-phone">
+                        <div class="gi-phone-screen">
+                            <div class="gi-screen-x"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="suite-floor-luxury"></div>
+            </div>
+            <div class="gi-legs">
+                <div class="gi-leg gi-leg-l"></div>
+                <div class="gi-leg gi-leg-r"></div>
             </div>
         </div>
 
-        <!-- 3D Door panel -->
-        <div class="door-3d-container">
-            <div class="door-panel" id="doorPanel">
-                <div class="door-wood-texture"></div>
-                <div class="door-ornate-frame"></div>
-                <div class="door-inner">
-                    <div class="door-detail-top"></div>
-                    <div class="door-detail-middle"></div>
-                    <div class="door-detail-bottom"></div>
-                </div>
-                <div class="door-handle-luxury"></div>
-            </div>
+        <!-- Floor line -->
+        <div class="gi-floor"></div>
+
+        <!-- Caption -->
+        <div class="gi-caption" id="giCaption">
+            <p class="gi-line1">Every guest checked out of your property.</p>
+            <p class="gi-line2">None of them <span class="gold-text">belong to you.</span></p>
         </div>
     </div>
 
@@ -165,39 +169,46 @@
             </div>
         </section>
 
-        <!-- The AI Suite — Perspective Tilt window -->
+        <!-- The AI Suite — Window opening into apartment -->
         <section id="ai-suite" class="ai-suite">
-            <div class="container">
-                <div class="section-eyebrow" data-aos="fade-up">The Alternative</div>
-                <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
-                    A window into<br>
-                    <span class="gold-text">the quiet suite.</span>
-                </h2>
-                <p class="section-lede" data-aos="fade-up" data-aos-delay="200">
-                    Hover to peer inside — where the relationship lives, undisturbed.
-                </p>
+            <div class="container ai-suite-layout">
 
-                <div class="suite-stage" data-aos="fade-up" data-aos-delay="300">
-                    <article class="suite-card" id="suiteCard">
-                        <div class="suite-card-inner">
-                            <div class="suite-warmth"></div>
-
-                            <div class="suite-window-pane">
-                                <div class="suite-skyline"></div>
-                                <div class="suite-window-light"></div>
-                            </div>
-
-                            <div class="suite-lamp"></div>
-                            <div class="suite-floor-line"></div>
-
-                            <div class="suite-caption">
-                                <span class="suite-caption-eyebrow">The AI Suite</span>
-                                <p>Every guest yours. Every detail intentional.</p>
-                            </div>
-                        </div>
-                        <div class="suite-shine"></div>
-                    </article>
+                <!-- Left: text -->
+                <div class="ai-text">
+                    <div class="section-eyebrow" data-aos="fade-up">The Alternative</div>
+                    <h2 class="section-title" data-aos="fade-up" data-aos-delay="100">
+                        A window into<br>
+                        <span class="gold-text">the quiet suite.</span>
+                    </h2>
+                    <p class="section-lede" data-aos="fade-up" data-aos-delay="200">
+                        When the algorithm steps aside,<br>this is what ownership feels like.
+                    </p>
                 </div>
+
+                <!-- Right: opening window -->
+                <div class="window-stage" data-aos="fade-up" data-aos-delay="250">
+                    <div class="apt-window" id="aptWindow">
+                        <div class="apt-frame">
+                            <!-- Interior (behind shutters) -->
+                            <div class="apt-interior">
+                                <div class="apt-sky"></div>
+                                <div class="apt-room-glow"></div>
+                                <div class="apt-lamp-glow"></div>
+                                <div class="apt-curtain apt-curtain-l"></div>
+                                <div class="apt-curtain apt-curtain-r"></div>
+                                <div class="apt-label">
+                                    <span>Your Guest. Your Relationship.</span>
+                                </div>
+                            </div>
+                            <!-- Shutters (open on scroll) -->
+                            <div class="apt-shutter apt-shutter-l" id="shutterL"></div>
+                            <div class="apt-shutter apt-shutter-r" id="shutterR"></div>
+                        </div>
+                        <div class="apt-sill"></div>
+                        <div class="apt-shadow"></div>
+                    </div>
+                </div>
+
             </div>
         </section>
 

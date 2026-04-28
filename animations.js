@@ -451,21 +451,18 @@ export function initWindowOpen() {
   const shutterR = document.getElementById('shutterR');
   if (!win || !shutterL || !shutterR) return;
 
-  inView(win, () => {
-    // Left shutter swings open (hinge on left edge)
-    animate(
-      shutterL,
-      { transform: ['rotateY(0deg)', 'rotateY(-100deg)'] },
-      { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.15 }
-    );
-    // Right shutter swings open (hinge on right edge)
-    animate(
-      shutterR,
-      { transform: ['rotateY(0deg)', 'rotateY(100deg)'] },
-      { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.3 }
-    );
-    return false; // run once
-  }, { margin: '-12% 0px -12% 0px' });
+  function openShutters() {
+    animate(shutterL, { transform: ['rotateY(0deg)', 'rotateY(-100deg)'] }, { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.15 });
+    animate(shutterR, { transform: ['rotateY(0deg)', 'rotateY(100deg)']  }, { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.3  });
+  }
+
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    observer.disconnect();
+    openShutters();
+  }, { rootMargin: '0px 0px -15% 0px', threshold: 0.1 });
+
+  observer.observe(win);
 }
 
 

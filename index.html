@@ -142,62 +142,28 @@
             <div class="window-stage-full" data-aos="fade-up" data-aos-delay="300">
                 <div class="apt-window" id="aptWindow">
                     <div class="apt-frame">
-                        <!-- Resort balcony view (first-person) -->
+                        <!-- Luxury entrance doors -->
                         <div class="apt-interior" id="hotelView">
-                            <!-- Layer 1: Sky + clouds -->
-                            <div class="rv-sky" id="rvSky">
-                                <div class="rv-cloud rv-c1"></div>
-                                <div class="rv-cloud rv-c2"></div>
-                                <div class="rv-cloud rv-c3"></div>
+                            <!-- Photorealistic scene backdrop -->
+                            <div class="dv-scene" id="doorScene"></div>
+                            <!-- Left door (hinge on left edge) -->
+                            <div class="dv-door dv-door-l" id="doorL">
+                                <div class="dv-panel dv-pt"></div>
+                                <div class="dv-panel dv-pb"></div>
+                                <div class="dv-handle dv-hr"></div>
                             </div>
-                            <!-- Layer 2: Hills -->
-                            <div class="rv-hills" id="rvHills"></div>
-                            <!-- Layer 3: Resort buildings + palms -->
-                            <div class="rv-resort" id="rvResort">
-                                <div class="rv-lawn-bg"></div>
-                                <div class="rv-bldg rv-bldg-main"></div>
-                                <div class="rv-bldg rv-bldg-wing-l"></div>
-                                <div class="rv-bldg rv-bldg-wing-r"></div>
-                                <div class="rv-palm rv-p1"></div>
-                                <div class="rv-palm rv-p2"></div>
-                                <div class="rv-palm rv-p3"></div>
-                                <div class="rv-palm rv-p4"></div>
-                            </div>
-                            <!-- Layer 4: Ground + pool + loungers -->
-                            <div class="rv-ground" id="rvGround">
-                                <div class="rv-grass"></div>
-                                <div class="rv-deck"></div>
-                                <div class="rv-pool">
-                                    <div class="rv-pool-shimmer"></div>
-                                    <div class="rv-gazebo"></div>
-                                </div>
-                                <div class="rv-lounger rv-l1"></div>
-                                <div class="rv-lounger rv-l2"></div>
-                                <div class="rv-lounger rv-l3"></div>
-                            </div>
-                            <!-- Railing (fixed foreground) -->
-                            <div class="hv-railing">
-                                <div class="hv-rail-bar hv-rail-top"></div>
-                                <div class="hv-rail-bar hv-rail-mid"></div>
-                                <div class="hv-rail-post hvpost1"></div>
-                                <div class="hv-rail-post hvpost2"></div>
-                                <div class="hv-rail-post hvpost3"></div>
-                                <div class="hv-rail-post hvpost4"></div>
-                                <div class="hv-rail-post hvpost5"></div>
-                                <div class="hv-rail-post hvpost6"></div>
-                                <div class="hv-rail-post hvpost7"></div>
-                                <div class="hv-rail-post hvpost8"></div>
-                                <div class="hv-floor"></div>
+                            <!-- Right door (hinge on right edge) -->
+                            <div class="dv-door dv-door-r" id="doorR">
+                                <div class="dv-panel dv-pt"></div>
+                                <div class="dv-panel dv-pb"></div>
+                                <div class="dv-handle dv-hl"></div>
                             </div>
                         </div>
-                        <!-- Shutters (swing open on scroll) -->
-                        <div class="apt-shutter apt-shutter-l" id="shutterL"></div>
-                        <div class="apt-shutter apt-shutter-r" id="shutterR"></div>
                     </div>
                     <div class="apt-sill"></div>
                     <div class="apt-shadow"></div>
                 </div>
-                <p class="drag-hint">← drag to explore →</p>
+                <p class="drag-hint">← hover to immerse →</p>
             </div>
         </section>
 
@@ -304,6 +270,8 @@
         Let's Talk
     </button>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script type="module">
         import { initAll } from './animations.js';

@@ -10,78 +10,30 @@ import { animate, inView } from 'https://cdn.jsdelivr.net/npm/motion@11/+esm';
 import { initLiquidShader }  from './webgl-liquid.js';
 
 /* ═══════════════════════════════════════════════════════════════
-   1. HOTEL PARALLAX — First-person balcony view
-   Mousemove: depth parallax on sky/horizon/pool layers.
-   Drag: panoramic pan left/right.
+   1. HOTEL PARALLAX — Subtle scene shift on mouse move
    ═══════════════════════════════════════════════════════════════ */
 export function initHotelParallax() {
-  const view   = document.getElementById('hotelView');
-  const sky    = document.getElementById('rvSky');
-  const hills  = document.getElementById('rvHills');
-  const resort = document.getElementById('rvResort');
-  const ground = document.getElementById('rvGround');
-  if (!view) return;
+  const view  = document.getElementById('hotelView');
+  const scene = document.getElementById('doorScene');
+  if (!view || !scene) return;
 
-  let panOffset  = 0;
-  let panTemp    = 0;
-  let isDragging = false;
-  let dragStartX = 0;
-  const MAX_PAN  = 50;
+  const gsap = window.gsap;
+  if (!gsap) return;
 
-  function applyLayers(mouseX, pan) {
-    if (sky)    animate(sky,    { x: mouseX * 0.02  + pan * 0.25 }, { duration: 0.70, easing: 'ease-out' });
-    if (hills)  animate(hills,  { x: mouseX * 0.05  + pan * 0.50 }, { duration: 0.65, easing: 'ease-out' });
-    if (resort) animate(resort, { x: mouseX * 0.09  + pan * 0.80 }, { duration: 0.55, easing: 'ease-out' });
-    if (ground) animate(ground, { x: mouseX * 0.14  + pan * 1.10 }, { duration: 0.40, easing: 'ease-out' });
-  }
-
-  // Mouse parallax
   view.addEventListener('mousemove', e => {
-    if (isDragging) return;
     const rect = view.getBoundingClientRect();
-    const mx   = e.clientX - rect.left - rect.width / 2;
-    applyLayers(mx, panOffset);
+    const mx = (e.clientX - rect.left - rect.width  / 2) / (rect.width  / 2);
+    const my = (e.clientY - rect.top  - rect.height / 2) / (rect.height / 2);
+    gsap.to(scene, {
+      x: mx * -18, y: my * -10,
+      scale: 1.08,
+      duration: 1.2, ease: 'power2.out', overwrite: 'auto'
+    });
   });
 
   view.addEventListener('mouseleave', () => {
-    if (!isDragging) applyLayers(0, panOffset);
+    gsap.to(scene, { x: 0, y: 0, scale: 1.05, duration: 1.4, ease: 'power2.inOut', overwrite: 'auto' });
   });
-
-  // Drag to pan
-  view.addEventListener('mousedown', e => {
-    isDragging = true;
-    dragStartX = e.clientX;
-    panTemp    = panOffset;
-    e.preventDefault();
-  });
-
-  window.addEventListener('mouseup', () => {
-    if (!isDragging) return;
-    isDragging = false;
-    panOffset  = panTemp;
-  });
-
-  window.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    const dx = e.clientX - dragStartX;
-    panTemp  = Math.max(-MAX_PAN, Math.min(MAX_PAN, panOffset + dx * 0.8));
-    applyLayers(0, panTemp);
-  });
-
-  // Touch support
-  let touchStartX = 0;
-  view.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    panTemp = panOffset;
-  }, { passive: true });
-
-  view.addEventListener('touchmove', e => {
-    const dx = e.touches[0].clientX - touchStartX;
-    panTemp  = Math.max(-MAX_PAN, Math.min(MAX_PAN, panOffset + dx * 0.6));
-    applyLayers(0, panTemp);
-  }, { passive: true });
-
-  view.addEventListener('touchend', () => { panOffset = panTemp; });
 }
 
 
@@ -448,23 +400,26 @@ export function initHotelTilt() {
    revealing the warm apartment interior behind.
    ═══════════════════════════════════════════════════════════════ */
 export function initWindowOpen() {
-  const win      = document.getElementById('aptWindow');
-  const shutterL = document.getElementById('shutterL');
-  const shutterR = document.getElementById('shutterR');
-  if (!win || !shutterL || !shutterR) return;
+  const doorL = document.getElementById('doorL');
+  const doorR = document.getElementById('doorR');
+  if (!doorL || !doorR) return;
 
-  function openShutters() {
-    animate(shutterL, { transform: ['rotateY(0deg)', 'rotateY(-100deg)'] }, { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.15 });
-    animate(shutterR, { transform: ['rotateY(0deg)', 'rotateY(100deg)']  }, { duration: 1.5, easing: [0.16, 1, 0.3, 1], delay: 0.3  });
-  }
+  const { gsap, ScrollTrigger } = window;
+  if (!gsap || !ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
 
-  const observer = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) return;
-    observer.disconnect();
-    openShutters();
-  }, { rootMargin: '0px 0px -15% 0px', threshold: 0.1 });
+  gsap.set(doorL, { transformPerspective: 1000, transformOrigin: 'left center',  rotateY: 0 });
+  gsap.set(doorR, { transformPerspective: 1000, transformOrigin: 'right center', rotateY: 0 });
 
-  observer.observe(win);
+  ScrollTrigger.create({
+    trigger: document.getElementById('aptWindow'),
+    start: 'top 80%',
+    once: true,
+    onEnter() {
+      gsap.to(doorL, { rotateY: -118, duration: 2.2, ease: 'power3.inOut', delay: 0.15 });
+      gsap.to(doorR, { rotateY:  118, duration: 2.2, ease: 'power3.inOut', delay: 0.30 });
+    }
+  });
 }
 
 

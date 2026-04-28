@@ -15,22 +15,24 @@ import { initLiquidShader }  from './webgl-liquid.js';
    Drag: panoramic pan left/right.
    ═══════════════════════════════════════════════════════════════ */
 export function initHotelParallax() {
-  const view    = document.getElementById('hotelView');
-  const sky     = document.getElementById('hvSky');
-  const horizon = document.getElementById('hvHorizon');
-  const pool    = document.getElementById('hvPool');
+  const view   = document.getElementById('hotelView');
+  const sky    = document.getElementById('rvSky');
+  const hills  = document.getElementById('rvHills');
+  const resort = document.getElementById('rvResort');
+  const ground = document.getElementById('rvGround');
   if (!view) return;
 
-  let panOffset  = 0;   // committed panorama offset (px)
-  let panTemp    = 0;   // live offset during drag
+  let panOffset  = 0;
+  let panTemp    = 0;
   let isDragging = false;
   let dragStartX = 0;
   const MAX_PAN  = 50;
 
   function applyLayers(mouseX, pan) {
-    if (sky)     animate(sky,     { x: mouseX * 0.025 + pan * 0.3 }, { duration: 0.7, easing: 'ease-out' });
-    if (horizon) animate(horizon, { x: mouseX * 0.06  + pan * 0.65 }, { duration: 0.55, easing: 'ease-out' });
-    if (pool)    animate(pool,    { x: mouseX * 0.14  + pan * 1.1  }, { duration: 0.4, easing: 'ease-out' });
+    if (sky)    animate(sky,    { x: mouseX * 0.02  + pan * 0.25 }, { duration: 0.70, easing: 'ease-out' });
+    if (hills)  animate(hills,  { x: mouseX * 0.05  + pan * 0.50 }, { duration: 0.65, easing: 'ease-out' });
+    if (resort) animate(resort, { x: mouseX * 0.09  + pan * 0.80 }, { duration: 0.55, easing: 'ease-out' });
+    if (ground) animate(ground, { x: mouseX * 0.14  + pan * 1.10 }, { duration: 0.40, easing: 'ease-out' });
   }
 
   // Mouse parallax

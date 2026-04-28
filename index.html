@@ -142,29 +142,40 @@
             <div class="window-stage-full" data-aos="fade-up" data-aos-delay="300">
                 <div class="apt-window" id="aptWindow">
                     <div class="apt-frame">
-                        <!-- Hotel balcony interior (first-person view) -->
+                        <!-- Resort balcony view (first-person) -->
                         <div class="apt-interior" id="hotelView">
-                            <!-- Layer 1: Sky (slowest parallax) -->
-                            <div class="hv-sky" id="hvSky"></div>
-                            <!-- Layer 2: City horizon (medium parallax) -->
-                            <div class="hv-horizon" id="hvHorizon"></div>
-                            <!-- Layer 3: Pool zone (fastest parallax) -->
-                            <div class="hv-poolzone" id="hvPool">
-                                <div class="hv-deck"></div>
-                                <div class="hv-pool-water">
-                                    <div class="hv-shimmer"></div>
-                                    <div class="hv-person hvp1"></div>
-                                    <div class="hv-person hvp2"></div>
-                                    <div class="hv-person hvp3"></div>
-                                </div>
-                                <div class="hv-lounger hvl1"></div>
-                                <div class="hv-lounger hvl2"></div>
-                                <div class="hv-lounger hvl3"></div>
-                                <div class="hv-lounger hvl4"></div>
-                                <div class="hv-umbrella hvu1"></div>
-                                <div class="hv-umbrella hvu2"></div>
+                            <!-- Layer 1: Sky + clouds -->
+                            <div class="rv-sky" id="rvSky">
+                                <div class="rv-cloud rv-c1"></div>
+                                <div class="rv-cloud rv-c2"></div>
+                                <div class="rv-cloud rv-c3"></div>
                             </div>
-                            <!-- Layer 4: Balcony railing (fixed foreground) -->
+                            <!-- Layer 2: Hills -->
+                            <div class="rv-hills" id="rvHills"></div>
+                            <!-- Layer 3: Resort buildings + palms -->
+                            <div class="rv-resort" id="rvResort">
+                                <div class="rv-lawn-bg"></div>
+                                <div class="rv-bldg rv-bldg-main"></div>
+                                <div class="rv-bldg rv-bldg-wing-l"></div>
+                                <div class="rv-bldg rv-bldg-wing-r"></div>
+                                <div class="rv-palm rv-p1"></div>
+                                <div class="rv-palm rv-p2"></div>
+                                <div class="rv-palm rv-p3"></div>
+                                <div class="rv-palm rv-p4"></div>
+                            </div>
+                            <!-- Layer 4: Ground + pool + loungers -->
+                            <div class="rv-ground" id="rvGround">
+                                <div class="rv-grass"></div>
+                                <div class="rv-deck"></div>
+                                <div class="rv-pool">
+                                    <div class="rv-pool-shimmer"></div>
+                                    <div class="rv-gazebo"></div>
+                                </div>
+                                <div class="rv-lounger rv-l1"></div>
+                                <div class="rv-lounger rv-l2"></div>
+                                <div class="rv-lounger rv-l3"></div>
+                            </div>
+                            <!-- Railing (fixed foreground) -->
                             <div class="hv-railing">
                                 <div class="hv-rail-bar hv-rail-top"></div>
                                 <div class="hv-rail-bar hv-rail-mid"></div>

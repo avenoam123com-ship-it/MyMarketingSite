@@ -1768,3 +1768,118 @@ h1, h2, h3, p, span, a, li {
     position: relative;
     z-index: 1;
 }
+
+/* =========================================================
+   VIDEO ERA · New Era of Design Section (B&W / 90s)
+   ========================================================= */
+
+#video-era {
+    position: relative;
+    min-height: 100vh;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+}
+
+.vhero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) contrast(1.15);
+}
+
+.vhero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.52);
+    z-index: 1;
+}
+
+/* CRT scanlines */
+.vhero-scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 0, 0, 0.1) 3px,
+        rgba(0, 0, 0, 0.1) 4px
+    );
+    z-index: 2;
+    pointer-events: none;
+}
+
+.vhero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8rem clamp(1.5rem, 4vw, 3rem) 8rem;
+}
+
+@media (min-width: 768px) {
+    .vhero-content {
+        padding-top: 12rem;
+    }
+}
+
+.vhero-headline {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ffffff;
+    line-height: 0.98;
+    letter-spacing: -2px;
+    font-size: clamp(3.75rem, 10vw, 100px);
+    margin: 0;
+}
+
+@media (min-width: 1024px) {
+    .vhero-headline {
+        letter-spacing: -4px;
+    }
+}
+
+.vhero-cta-wrap {
+    margin-top: 3rem;
+}
+
+.vhero-cta {
+    position: relative;
+    width: 184px;
+    height: 65px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: transform 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vhero-cta:hover  { transform: scale(1.05); }
+.vhero-cta:active { transform: scale(0.95); }
+
+.vhero-cta svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.vhero-cta span {
+    position: relative;
+    z-index: 1;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: #161a20;
+    letter-spacing: 0.02em;
+}

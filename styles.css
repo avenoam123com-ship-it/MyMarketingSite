@@ -157,7 +157,9 @@ h1, h2, h3, p, span, a, li {
 .dv-scene {
     position: absolute;
     inset: -5%;
-    background: url('hotel-scene.png') center center / cover no-repeat;
+    background:
+        url('hotel-scene.png') center center / cover no-repeat,
+        linear-gradient(180deg, #4a9fd4 0%, #7abfe0 45%, #1ab4d0 65%, #e8c8a0 100%);
     z-index: 1;
     will-change: transform;
     transform: scale(1.05);

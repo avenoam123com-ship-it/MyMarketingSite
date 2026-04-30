@@ -1,3 +1,8 @@
 # Claude Code configuration and credentials
 .claude/
 .mcp.json
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
